@@ -1,0 +1,42 @@
+# ── Archivos de diseño pesados ──
+*.psd
+*.tif
+*.tiff
+*.ai
+*.eps
+*.indd
+*.sketch
+*.fig
+*.xd
+
+# ── Video / Audio ──
+*.mp4
+*.mov
+*.avi
+*.wmv
+*.wav
+*.mp3
+
+# ── Comprimidos ──
+*.zip
+*.rar
+*.7z
+
+# ── PDFs (material de apoyo) ──
+*.pdf
+
+# ── Carpetas no necesarias en web ──
+Mockups/
+Materiales/
+Resources/Materiales/
+Resources/__MACOSX/
+Tipografías/
+
+# ── Sistema / editores ──
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+node_modules/

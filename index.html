@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purple Studio — Agencia Creativa Guatemala</title>
+  <meta name="description" content="Relájate. El piloto sí leyó el brief. Agencia creativa guatemalteca seriamente irónica.">
+  <meta property="og:title" content="Purple Studio — Agencia Creativa Guatemala">
+  <meta property="og:description" content="Relájate. El piloto sí leyó el brief.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://purplestudio.gt/">
+  <meta property="og:locale" content="es_GT">
+  <meta property="og:image" content="https://purplestudio.gt/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Purple Studio — Agencia Creativa Guatemala">
+  <meta name="twitter:description" content="Agencia creativa guatemalteca. Branding, Social Media, ATL/BTL, Audiovisuales y Estrategia.">
+  <link rel="canonical" href="https://purplestudio.gt/">
+  <style>
+
+    /* ═══════════════════════════════════════════
+       CUSTOM FONTS
+    ═══════════════════════════════════════════ */
+    @font-face {
+      font-family: 'DK Udon Soup';
+      src: url('fonts/DKUdonSoup.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'EuclidFlex-Bold';
+      src: url('fonts/EuclidFlex-Bold.otf') format('opentype');
+      font-weight: bold;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'EuclidFlexLight';
+      src: url('fonts/EuclidFlexLight.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+    }
+
+    /* ═══════════════════════════════════════════
+       DESIGN SYSTEM — VARIABLES
+    ═══════════════════════════════════════════ */
+    :root {
+      --color-purple: #7B3FE4;
+      --color-purple-dark: #2D1B69;
+      --color-red: #E63B2E;
+      --color-orange: #F0A500;
+      --color-turquoise: #00BCD4;
+      --color-green: #8DB600;
+      --color-gray-char: #6B6B6B;
+      --color-bg: #eef7ff;
+      --color-dark: #3A3A3A;
+      --color-white: #FFFFFF;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'EuclidFlexLight', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-dark);
+      background: var(--color-bg);
+      overflow-x: hidden;
+    }
+    @media (min-width: 769px) {
+      body { cursor: none; }
+      a, button, [data-cursor] { cursor: none; }
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; background: none; font-family: inherit; }
+    ul { list-style: none; }
+
+    /* ═══════════════════════════════════════════
+       TYPOGRAPHY
+    ═══════════════════════════════════════════ */
+    .font-headline, h1, h2, h3 {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 400;
+    }
+    .font-accent {
+      font-family: 'DK Udon Soup', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+    .font-body { font-family: 'EuclidFlexLight', sans-serif; }
+
+    /* ═══════════════════════════════════════════
+       SCROLL PROGRESS
+    ═══════════════════════════════════════════ */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: var(--color-purple); width: 0%;
+      z-index: 10001; transition: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       CUSTOM CURSOR
+    ═══════════════════════════════════════════ */
+    #cursor {
+      width: 8px; height: 8px; background: var(--color-purple);
+      border-radius: 50%; position: fixed;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+    }
+    #cursor-follower {
+      width: 36px; height: 36px;
+      border: 2px solid var(--color-purple); border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, opacity 0.3s ease;
+      opacity: 0.5;
+    }
+    #cursor-follower.expand {
+      width: 56px; height: 56px;
+      background: rgba(123, 63, 228, 0.1);
+      opacity: 0.8;
+    }
+    @media (max-width: 768px) {
+      #cursor, #cursor-follower { display: none; }
+    }
+
+    /* ═══════════════════════════════════════════
+       BACK TO TOP
+    ═══════════════════════════════════════════ */
+    #back-to-top {
+      position: fixed; bottom: 32px; right: 32px;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--color-purple); border: none;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; }
+    #back-to-top:hover { transform: scale(1.1); background: #5C2DB0; }
+    #back-to-top svg { width: 20px; height: 20px; fill: white; }
+
+    /* ═══════════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════════ */
+    .btn-primary {
+      display: inline-block;
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 18px; letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--color-purple); color: var(--color-white);
+      padding: 16px 40px; border-radius: 32px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .btn-primary:hover { background: #5C2DB0; transform: scale(1.03); }
+    .btn-secondary {
+      font-family: 'EuclidFlexLight', sans-serif;
+      font-weight: 500; font-size: 16px;
+      color: var(--color-white);
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    .btn-secondary:hover { border-color: var(--color-white); }
+
+    /* ═══════════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; width: 100%;
+      height: 72px; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      background: transparent;
+      transition: background 0.4s ease;
+    }
+    .nav.scrolled { background: rgba(238,247,255,0.95); backdrop-filter: blur(12px); }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo-img {
+      height: 125px; width: auto;
+      transition: filter 0.4s ease, brightness 0.4s ease;
+    }
+    .nav.scrolled .nav-logo-img {
+      /* stays dark on light scrolled bg */
+    }
+    .nav-links {
+      display: flex; gap: 32px; align-items: center;
+    }
+    .nav-links a {
+      font-family: 'EuclidFlexLight', sans-serif;
+      font-weight: 500; font-size: 13px;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: rgba(26,26,26,0.6);
+      position: relative;
+      transition: color 0.4s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--color-dark); }
+    .nav.scrolled .nav-links a { color: rgba(26,26,26,0.6); }
+    .nav.scrolled .nav-links a:hover, .nav.scrolled .nav-links a.active { color: var(--color-dark); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--color-purple);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-cta {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 18px; letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--color-purple); color: var(--color-white);
+      padding: 12px 28px; border-radius: 32px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .nav-cta:hover { background: #5C2DB0; transform: scale(1.03); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; padding: 8px; z-index: 1002;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--color-dark);
+      transition: transform 0.3s ease, opacity 0.3s ease, background 0.4s ease;
+    }
+    .nav.scrolled .hamburger span { background: var(--color-dark); }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+      background: var(--color-purple-dark);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 24px;
+      z-index: 1001; opacity: 0; pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: auto; }
+    .mobile-menu a {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 48px; color: var(--color-white);
+      letter-spacing: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    .hero {
+      min-height: 100vh; background: var(--color-bg);
+      position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 58% 42%;
+      align-items: center; padding: 130px 80px 100px;
+    }
+    .hero-blob {
+      position: absolute; top: -100px; right: -100px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: var(--color-purple); opacity: 0.15;
+      filter: blur(80px);
+    }
+    .hero-scribble {
+      position: absolute; opacity: 0.06;
+    }
+    .hero-overline {
+      display: inline-block;
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 20px; color: var(--color-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      background: rgba(240, 165, 0, 0.15);
+      border: 1px solid var(--color-orange);
+      padding: 4px 12px; border-radius: 4px;
+      margin-bottom: 24px;
+    }
+    .hero-line-wrapper {
+      overflow: hidden;
+      padding-top: 0.3em;
+    }
+    .hero-line {
+      display: block;
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      text-transform: uppercase; color: var(--color-dark);
+      letter-spacing: 2px; line-height: 0.9;
+    }
+    .hero-line:nth-child(1) { font-size: 100px; }
+    .hero-line:nth-child(2) { font-size: 88px; color: rgba(26,26,26,0.9); }
+    .hero-line:nth-child(3) { font-size: 72px; color: var(--color-purple); }
+    .hero-body {
+      font-size: 18px; color: rgba(26,26,26,0.6);
+      line-height: 1.7; max-width: 480px; margin-top: 28px;
+    }
+    .hero-ctas {
+      display: flex; gap: 16px; align-items: center;
+      margin-top: 40px; flex-wrap: wrap;
+    }
+    .hero-stats {
+      display: flex; gap: 40px; margin-top: 56px; align-items: center;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-number {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 40px; color: var(--color-dark);
+    }
+    .hero-stat-label {
+      font-size: 12px; text-transform: uppercase;
+      color: rgba(26,26,26,0.4); letter-spacing: 1px;
+    }
+    .hero-stat-divider {
+      width: 1px; height: 40px; background: rgba(26,26,26,0.15);
+    }
+    .hero-right {
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .hero-mascot-wrapper { position: relative; }
+    .hero-annotation {
+      position: absolute; top: -20px; right: -60px;
+      font-family: 'DK Udon Soup', sans-serif;
+      color: var(--color-purple); font-size: 20px;
+      transform: rotate(-15deg); opacity: 0.7;
+    }
+
+    @media (max-width: 1024px) {
+      .hero { padding: 0 60px; }
+      .hero-line:nth-child(1) { font-size: 80px; }
+      .hero-line:nth-child(2) { font-size: 68px; }
+      .hero-line:nth-child(3) { font-size: 58px; }
+    }
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 100px 24px 60px;
+        text-align: center;
+        min-height: auto;
+      }
+      .hero-line:nth-child(1) { font-size: 64px; }
+      .hero-line:nth-child(2) { font-size: 54px; }
+      .hero-line:nth-child(3) { font-size: 44px; }
+      .hero-body { max-width: 100%; }
+      .hero-ctas { justify-content: center; }
+      .hero-stats { justify-content: center; flex-wrap: wrap; gap: 24px; }
+      .hero-right { margin-top: 40px; }
+      .hero-right img { width: 240px !important; }
+      .hero-annotation { display: none; }
+    }
+
+    /* ═══════════════════════════════════════════
+       MASCOT SHARED
+    ═══════════════════════════════════════════ */
+    .mascot-svg { transition: transform 0.3s ease; }
+    .speech-bubble {
+      position: absolute; background: var(--color-white);
+      border-radius: 20px; padding: 8px 16px;
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 20px; text-transform: uppercase;
+      letter-spacing: 0.2em;
+      opacity: 0; transform: scale(0.8);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      white-space: nowrap; pointer-events: none;
+      z-index: 5;
+    }
+    .speech-bubble::after {
+      content: ''; position: absolute; bottom: -8px; left: 24px;
+      width: 16px; height: 16px; background: var(--color-white);
+      border-radius: 50%;
+    }
+    .mascot-hover:hover .speech-bubble,
+    .speech-bubble.show {
+      opacity: 1; transform: scale(1);
+    }
+
+    /* ═══════════════════════════════════════════
+       CLIENTS MARQUEE
+    ═══════════════════════════════════════════ */
+    .clients {
+      background: var(--color-bg);
+      border-top: 1px solid rgba(123,63,228,0.1); border-bottom: 1px solid rgba(123,63,228,0.1);
+      display: flex; flex-direction: column; align-items: center;
+      padding: 40px 0; position: relative;
+    }
+    .clients-label {
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 20px; text-transform: uppercase;
+      letter-spacing: 0.2em; color: var(--color-purple);
+      white-space: nowrap;
+    }
+    .marquee-wrapper {
+      overflow: hidden; width: 100%; position: relative; z-index: 1;
+    }
+    .marquee-track {
+      display: flex; align-items: center; width: max-content;
+      animation: marquee 50s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-logo {
+      height: 70px; width: 170px;
+      object-fit: contain; flex-shrink: 0;
+      padding: 0 24px;
+    }
+    @media (max-width: 768px) {
+      .marquee-logo { height: 36px; width: 100px; padding: 0 16px; }
+    }
+    @keyframes cloudDriftRight {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(-60vw); }
+      100% { transform: translateX(0); }
+    }
+    @keyframes cloudDriftLeft {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(60vw); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (max-width: 768px) {
+      .clients-label { padding-left: 16px; font-size: 10px; }
+      .marquee-logo { height: 36px; padding: 0 20px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       SERVICES
+    ═══════════════════════════════════════════ */
+    .services {
+      background: var(--color-bg); padding: 120px 80px;
+    }
+    .section-header {
+      text-align: center; margin-bottom: 80px;
+      position: relative; z-index: 1;
+    }
+    .section-overline {
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 20px; color: var(--color-purple);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+    .section-title {
+      font-size: 72px; color: var(--color-dark);
+      margin-top: 8px;
+    }
+    .section-subtitle {
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 20px; color: var(--color-gray-char);
+      margin-top: 8px;
+      letter-spacing: 0.2em;
+    }
+    .section-line {
+      width: 80px; height: 3px; background: var(--color-purple);
+      margin: 20px auto 0;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; position: relative; z-index: 1;
+    }
+    .service-card {
+      border-radius: 0; padding: 40px 32px;
+      position: relative; overflow: visible;
+      opacity: 1; /* CSS default — GSAP overrides safely via JS */
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.3s ease, border-color 0.3s ease;
+      will-change: transform;
+    }
+    .service-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+    .service-card:hover .mascot-img {
+      animation: mascot-bounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .service-card:hover .card-arrow { transform: translateX(6px); }
+    @keyframes mascot-bounce {
+      0%   { transform: translateY(0) rotate(0deg); }
+      30%  { transform: translateY(-12px) rotate(-4deg); }
+      60%  { transform: translateY(-6px) rotate(3deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+    .service-card::after {
+      content: ''; position: absolute; inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(ellipse at center, var(--card-color, transparent) 0%, transparent 70%);
+      opacity: 0; transition: opacity 0.4s ease;
+      z-index: 0; pointer-events: none;
+    }
+    .service-card:hover::after { opacity: 0.08; }
+    .card-mascot {
+      height: 160px; display: flex; align-items: center;
+      justify-content: center; margin-bottom: 24px;
+    }
+    .card-badge {
+      display: inline-block; border-radius: 6px;
+      padding: 4px 14px;
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 14px; letter-spacing: 2px;
+      text-transform: uppercase; color: white;
+    }
+    .service-card h3 {
+      font-size: 32px; margin-top: 16px; margin-bottom: 12px;
+    }
+    .service-card p {
+      font-size: 15px; color: #444; line-height: 1.6; margin-top: 20px;
+    }
+    .card-arrow {
+      position: absolute; bottom: 24px; right: 24px;
+      font-family: 'EuclidFlexLight', sans-serif;
+      font-weight: 500; font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    /* Card color variants */
+    .card-purple { background: rgba(123,63,228,0.08); border: 1px solid rgba(123,63,228,0.2); }
+    .card-purple:hover { border-color: rgba(123,63,228,0.6); }
+    .card-purple h3 { color: #5C2DB0; }
+    .card-purple .card-badge { background: var(--color-purple); }
+    .card-purple .card-arrow { color: var(--color-purple); }
+    .card-purple::after { background: var(--color-purple); }
+
+    .card-red { background: rgba(230,59,46,0.08); border: 1px solid rgba(230,59,46,0.2); }
+    .card-red:hover { border-color: rgba(230,59,46,0.6); }
+    .card-red h3 { color: #B82A22; }
+    .card-red .card-badge { background: var(--color-red); }
+    .card-red .card-arrow { color: var(--color-red); }
+    .card-red::after { background: var(--color-red); }
+
+    .card-orange { background: rgba(240,165,0,0.08); border: 1px solid rgba(240,165,0,0.2); }
+    .card-orange:hover { border-color: rgba(240,165,0,0.6); }
+    .card-orange h3 { color: #A06D00; }
+    .card-orange .card-badge { background: var(--color-orange); }
+    .card-orange .card-arrow { color: var(--color-orange); }
+    .card-orange::after { background: var(--color-orange); }
+
+    .card-turquoise { background: rgba(0,188,212,0.08); border: 1px solid rgba(0,188,212,0.2); }
+    .card-turquoise:hover { border-color: rgba(0,188,212,0.6); }
+    .card-turquoise h3 { color: #0097A7; }
+    .card-turquoise .card-badge { background: var(--color-turquoise); }
+    .card-turquoise .card-arrow { color: var(--color-turquoise); }
+    .card-turquoise::after { background: var(--color-turquoise); }
+
+    .card-green { background: rgba(141,182,0,0.08); border: 1px solid rgba(141,182,0,0.2); }
+    .card-green:hover { border-color: rgba(141,182,0,0.6); }
+    .card-green h3 { color: #6E8E00; }
+    .card-green .card-badge { background: var(--color-green); }
+    .card-green .card-arrow { color: var(--color-green); }
+    .card-green::after { background: var(--color-green); }
+
+    .card-gray { background: rgba(107,107,107,0.08); border: 1px solid rgba(107,107,107,0.2); }
+    .card-gray:hover { border-color: rgba(107,107,107,0.6); }
+    .card-gray h3 { color: #555; }
+    .card-gray .card-badge { background: var(--color-gray-char); }
+    .card-gray .card-arrow { color: var(--color-gray-char); }
+    .card-gray::after { background: var(--color-gray-char); }
+
+    @media (max-width: 1024px) {
+      .services { padding: 80px 40px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-title { font-size: 56px; }
+    }
+    @media (max-width: 768px) {
+      .services { padding: 60px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 48px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       PORTFOLIO
+    ═══════════════════════════════════════════ */
+    .portfolio {
+      background: var(--color-bg); padding: 120px 80px;
+      position: relative; overflow: hidden;
+    }
+    .portfolio-header h2 {
+      font-size: 72px; color: var(--color-dark);
+    }
+    .portfolio-header .section-subtitle {
+      color: var(--color-gray-char);
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 16px; margin-top: 64px;
+    }
+    .portfolio-card {
+      position: relative; overflow: hidden;
+      border-radius: 12px; display: flex;
+      align-items: flex-end; padding: 24px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      will-change: transform;
+    }
+    .portfolio-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+      z-index: 1; transition: background 0.4s ease;
+    }
+    .portfolio-card:hover { transform: scale(1.02); }
+    .portfolio-card-content {
+      position: relative; z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .portfolio-card:hover .portfolio-card-content { transform: translateY(-8px); }
+    .portfolio-card-title {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 28px; color: white; letter-spacing: 2px;
+      transition: transform 0.3s ease;
+    }
+    .portfolio-card:hover .portfolio-card-title { transform: scale(1.1); transform-origin: left bottom; }
+    .portfolio-card-tag {
+      font-family: 'EuclidFlexLight', sans-serif;
+      font-weight: 500; font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    .portfolio-card-arrow {
+      position: absolute; top: 16px; right: 16px;
+      font-size: 24px; color: white;
+      opacity: 0; transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+    .portfolio-card:hover .portfolio-card-arrow { opacity: 1; }
+    .portfolio-cta {
+      text-align: center; margin-top: 48px;
+    }
+    .portfolio-cta a {
+      font-family: 'EuclidFlexLight', sans-serif;
+      font-weight: 500; font-size: 16px;
+      color: var(--color-dark); letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(26,26,26,0.3);
+      padding-bottom: 4px;
+      transition: border-color 0.3s ease;
+    }
+    .portfolio-cta a:hover { border-color: var(--color-dark); }
+    .portfolio-mascot-deco {
+      position: absolute; bottom: 20px; left: 20px;
+      opacity: 0.9; z-index: 3;
+    }
+
+    @media (max-width: 1024px) {
+      .portfolio { padding: 80px 40px; }
+      .portfolio-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 260px 260px 260px;
+      }
+      .portfolio-card:first-child { grid-row: span 1; }
+    }
+    @media (max-width: 768px) {
+      .portfolio { padding: 60px 20px; }
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 220px);
+      }
+      .portfolio-header h2 { font-size: 48px; }
+      .portfolio-mascot-deco { display: none; }
+    }
+
+    /* ═══════════════════════════════════════════
+       ABOUT / NOSOTROS
+    ═══════════════════════════════════════════ */
+    .about {
+      background: var(--color-bg); padding: 120px 80px;
+      position: relative; overflow: hidden;
+    }
+    .about-blob {
+      position: absolute; top: -200px; right: -200px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: #5C2DB0; opacity: 0.5; filter: blur(100px);
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      position: relative; z-index: 2;
+    }
+    .about-overline {
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 20px; color: var(--color-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+    .about h2 {
+      font-size: 64px; color: var(--color-dark);
+      margin-top: 12px;
+    }
+    .about-body {
+      font-size: 18px; color: rgba(26,26,26,0.6);
+      line-height: 1.7; margin-top: 24px;
+    }
+    .about-stats {
+      display: flex; gap: 40px; margin-top: 48px;
+    }
+    .about-stat-number {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 64px; color: var(--color-dark);
+    }
+    .about-stat-label {
+      font-size: 12px; text-transform: uppercase;
+      color: rgba(26,26,26,0.4); letter-spacing: 1px;
+    }
+    .about-link {
+      display: inline-block; margin-top: 40px;
+      font-family: 'EuclidFlexLight', sans-serif;
+      font-weight: 500; color: var(--color-purple);
+      border-bottom: 2px solid rgba(123,63,228,0.4);
+      padding-bottom: 4px;
+      transition: border-color 0.3s ease;
+    }
+    .about-link:hover { border-color: var(--color-purple); }
+
+    /* Pilots */
+    .pilots-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 32px; justify-items: center;
+    }
+    .pilot {
+      text-align: center;
+    }
+    .pilot-avatar {
+      width: 120px; height: 120px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.1);
+      margin: 0 auto 16px;
+    }
+    .pilot-avatar span {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 48px;
+    }
+    .pilot-name {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 20px; color: var(--color-dark);
+      letter-spacing: 2px;
+    }
+    .pilot-role {
+      font-size: 12px; color: rgba(26,26,26,0.5);
+      text-transform: uppercase; margin-top: 4px;
+    }
+
+    @media (max-width: 1024px) {
+      .about { padding: 80px 40px; }
+      .about h2 { font-size: 48px; }
+    }
+    @media (max-width: 768px) {
+      .about { padding: 60px 20px; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+      .about-stats { justify-content: center; flex-wrap: wrap; }
+      .about h2 { font-size: 40px; }
+      .pilots-grid { gap: 20px; }
+      .pilot-avatar { width: 90px; height: 90px; }
+      .pilot-avatar span { font-size: 36px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       BLOG
+    ═══════════════════════════════════════════ */
+    .blog {
+      background: var(--color-bg); padding: 120px 80px;
+    }
+    .blog-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 32px; margin-top: 64px;
+      position: relative; z-index: 1;
+    }
+    .blog-card {
+      background: var(--color-white); border-radius: 12px;
+      padding: 32px; transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex; flex-direction: column; height: 100%;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+    .blog-card-badge {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 12px; text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .blog-card h3 {
+      font-family: 'EuclidFlexLight', sans-serif;
+      font-weight: 500; font-size: 20px;
+      color: var(--color-dark); line-height: 1.3;
+      margin-top: 12px; text-transform: none;
+      letter-spacing: 0;
+    }
+    .blog-card p {
+      font-size: 15px; color: #666;
+      margin-top: 12px; line-height: 1.6;
+    }
+    .blog-card-footer {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-top: auto;
+      padding-top: 16px; border-top: 1px solid #eee;
+    }
+    .blog-card-date { font-size: 13px; color: #999; }
+    .blog-card-link {
+      font-family: 'EuclidFlexLight', sans-serif;
+      font-weight: 500; font-size: 14px;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    @media (max-width: 1024px) {
+      .blog { padding: 80px 40px; }
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .blog { padding: 60px 20px; }
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA SECTION
+    ═══════════════════════════════════════════ */
+    .cta-section {
+      background: var(--color-bg); min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      padding: 120px 80px;
+    }
+    .cta-center {
+      text-align: center; position: relative; z-index: 3;
+    }
+    .cta-overline {
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 20px; color: var(--color-purple);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+    .cta-title { margin-top: 16px; }
+    .cta-title span {
+      display: block;
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 96px; color: var(--color-dark);
+      letter-spacing: 2px; line-height: 0.95;
+    }
+    .cta-title .accent { color: var(--color-purple); font-size: 120px; }
+    .cta-body {
+      font-size: 18px; color: #444; margin-top: 24px;
+    }
+    .cta-btn {
+      display: inline-block; margin-top: 40px;
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 22px; letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--color-purple); color: var(--color-white);
+      padding: 20px 56px; border-radius: 32px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .cta-btn:hover { background: #5C2DB0; transform: scale(1.05); }
+
+    .cta-mascot {
+      position: absolute; z-index: 1;
+    }
+    .cta-mascot.m1 { bottom: 2%; left: 12%; width: 140px; }
+    .cta-mascot.m2 { bottom: 3%; right: 8%; width: 120px; }
+    .cta-mascot.m3 { right: 5%; top: 45%; width: 100px; }
+    .cta-mascot.m4 { top: 8%; right: 22%; width: 90px; }
+    .cta-mascot.m5 { top: 5%; left: 18%; width: 110px; }
+    .cta-mascot.m6 { left: 5%; top: 42%; width: 80px; }
+
+    @media (max-width: 768px) {
+      .cta-section { padding: 80px 20px; min-height: auto; }
+      .cta-title span { font-size: 56px; }
+      .cta-title .accent { font-size: 72px; }
+      .cta-mascot { display: none; }
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    .footer { background: #E8E0F0; border-top: 1px solid rgba(123,63,228,0.1); }
+    .footer-main {
+      padding: 80px; display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+    }
+    .footer-brand-name {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 32px; color: var(--color-dark);
+      letter-spacing: 3px;
+    }
+    .footer-tagline {
+      font-size: 14px; color: var(--color-gray-char);
+      margin-top: 8px;
+    }
+    .footer-socials {
+      display: flex; gap: 12px; margin-top: 24px;
+    }
+    .footer-social {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid rgba(26,26,26,0.15);
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s ease;
+    }
+    .footer-social:hover { border-color: var(--color-purple); }
+    .footer-social svg { width: 16px; height: 16px; fill: rgba(26,26,26,0.4); }
+    .footer-social:hover svg { fill: var(--color-purple); }
+    .footer-col-label {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 16px; color: rgba(26,26,26,0.35);
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block; font-size: 14px;
+      color: rgba(26,26,26,0.6);
+      margin-bottom: 8px;
+      transition: color 0.3s ease;
+    }
+    .footer-col a:hover { color: var(--color-dark); }
+    .footer-col .accent-link { color: var(--color-purple); }
+    .footer-col .accent-link:hover { color: #9b6bef; }
+
+    .footer-marquee-bar {
+      background: var(--color-purple); height: 48px;
+      overflow: hidden; display: flex; align-items: center;
+    }
+    .footer-marquee-track {
+      display: flex; width: max-content;
+      animation: marquee 30s linear infinite;
+    }
+    .footer-marquee-track:hover { animation-play-state: paused; }
+    .footer-marquee-item {
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 20px; color: var(--color-white);
+      text-transform: uppercase; white-space: nowrap;
+      padding: 0 24px;
+    }
+    .footer-copyright {
+      text-align: center; padding: 12px;
+      font-size: 12px; color: rgba(26,26,26,0.3);
+    }
+
+    @media (max-width: 1024px) {
+      .footer-main { padding: 60px 40px; grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .footer-main { padding: 40px 20px; grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       CAREERS
+    ═══════════════════════════════════════════ */
+    .careers {
+      background: var(--color-purple-dark); padding: 120px 80px;
+      position: relative; overflow: hidden;
+    }
+    .careers .section-header { color: var(--color-white); text-align: center; margin-bottom: 56px; }
+    .careers .section-overline { color: var(--color-orange); }
+    .careers .section-title { color: var(--color-white); }
+    .careers .section-subtitle { color: rgba(255,255,255,0.6); }
+    .careers-form {
+      max-width: 560px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .careers-form input,
+    .careers-form textarea {
+      font-family: 'EuclidFlexLight', sans-serif;
+      font-size: 16px; padding: 16px 20px;
+      border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08); color: var(--color-white);
+      outline: none; transition: border-color 0.3s ease;
+    }
+    .careers-form input::placeholder,
+    .careers-form textarea::placeholder { color: rgba(255,255,255,0.4); }
+    .careers-form input:focus,
+    .careers-form textarea:focus { border-color: var(--color-purple); }
+    .careers-form textarea { min-height: 120px; resize: vertical; }
+    .careers-success {
+      display: none; text-align: center; padding: 32px;
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 20px; color: var(--color-orange);
+      text-transform: uppercase;
+    }
+    .careers-success.show { display: block; }
+    @media (max-width: 768px) {
+      .careers { padding: 60px 20px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION REVEAL
+    ═══════════════════════════════════════════ */
+    .section-reveal { opacity: 1; }
+
+    /* ═══════════════════════════════════════════
+       RISING BUBBLES — GLOBAL LAVA EFFECT
+    ═══════════════════════════════════════════ */
+    .rising-bubbles {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      overflow: hidden;
+    }
+    .rising-bubble {
+      position: absolute; bottom: -80px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(123,63,228,0.12), rgba(123,63,228,0.03));
+      animation: riseBubble linear infinite;
+    }
+    .rising-bubble:nth-child(1)  { width:60px;  height:60px;  left:5%;   animation-duration:18s; animation-delay:0s; }
+    .rising-bubble:nth-child(2)  { width:30px;  height:30px;  left:15%;  animation-duration:22s; animation-delay:-4s; }
+    .rising-bubble:nth-child(3)  { width:80px;  height:80px;  left:28%;  animation-duration:25s; animation-delay:-8s; }
+    .rising-bubble:nth-child(4)  { width:45px;  height:45px;  left:40%;  animation-duration:20s; animation-delay:-2s; }
+    .rising-bubble:nth-child(5)  { width:70px;  height:70px;  left:55%;  animation-duration:28s; animation-delay:-12s; }
+    .rising-bubble:nth-child(6)  { width:35px;  height:35px;  left:65%;  animation-duration:19s; animation-delay:-6s; }
+    .rising-bubble:nth-child(7)  { width:90px;  height:90px;  left:75%;  animation-duration:24s; animation-delay:-10s; }
+    .rising-bubble:nth-child(8)  { width:50px;  height:50px;  left:85%;  animation-duration:21s; animation-delay:-3s; }
+    .rising-bubble:nth-child(9)  { width:40px;  height:40px;  left:92%;  animation-duration:26s; animation-delay:-14s; }
+    .rising-bubble:nth-child(10) { width:55px;  height:55px;  left:48%;  animation-duration:23s; animation-delay:-7s; }
+    .rising-bubble:nth-child(11) { width:25px;  height:25px;  left:10%;  animation-duration:17s; animation-delay:-9s; }
+    .rising-bubble:nth-child(12) { width:65px;  height:65px;  left:35%;  animation-duration:27s; animation-delay:-5s; }
+
+    @keyframes riseBubble {
+      0%   { transform: translateY(0) translateX(0) scale(0.6); opacity: 0; }
+      10%  { opacity: 1; }
+      50%  { transform: translateY(-50vh) translateX(20px) scale(1); }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(-110vh) translateX(-15px) scale(0.8); opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rising-bubble { animation: none; display: none; }
+    }
+
+    /* ═══════════════════════════════════════════
+       DOODLES DECORATIVOS
+    ═══════════════════════════════════════════ */
+    .doodle {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .doodle img {
+      width: 100%; height: auto;
+    }
+    /* Blend mode para eliminar fondo negro de Doodles 01 y 03 */
+    .doodle-blend img {
+      mix-blend-mode: screen;
+    }
+    /* En fondo claro, screen no funciona bien con negro, usar multiply inverted */
+    .doodle img {
+      opacity: 1;
+    }
+    @media (max-width: 480px) {
+      .doodle { display: none; }
+    }
+    @media (max-width: 768px) {
+      .doodle { transform: scale(0.7); }
+    }
+
+    /* ═══════════════════════════════════════════
+       MASCOT IMG (replacing SVG)
+    ═══════════════════════════════════════════ */
+    .mascot-img {
+      transition: transform 0.3s ease;
+      pointer-events: auto;
+    }
+    .service-card:hover .mascot-img { transform: rotate(5deg); }
+
+    /* ═══════════════════════════════════════════
+       HERO TITLE ZOOM HOVER
+    ═══════════════════════════════════════════ */
+    .hero h1 {
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform-origin: left center;
+    }
+    .hero h1:hover {
+      transform: scale(1.04);
+    }
+    .hero-line {
+      transition: text-shadow 0.4s ease, letter-spacing 0.4s ease;
+    }
+    .hero h1:hover .hero-line {
+      text-shadow: 0 0 60px rgba(123, 63, 228, 0.3);
+      letter-spacing: 6px;
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATED BLOBS — LAVA LAMP
+    ═══════════════════════════════════════════ */
+    .blobs-container {
+      position: absolute; inset: 0; overflow: hidden;
+      pointer-events: none; z-index: 0;
+    }
+    .blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px);
+      animation: blobFloat 20s ease-in-out infinite alternate;
+    }
+    .blob:nth-child(1) { animation-duration: 22s; }
+    .blob:nth-child(2) { animation-duration: 18s; animation-delay: -5s; }
+    .blob:nth-child(3) { animation-duration: 25s; animation-delay: -10s; }
+    .blob:nth-child(4) { animation-duration: 20s; animation-delay: -3s; }
+    @keyframes blobFloat {
+      0%   { transform: translate(0, 0) scale(1); }
+      25%  { transform: translate(60px, -40px) scale(1.1); }
+      50%  { transform: translate(-30px, 50px) scale(0.95); }
+      75%  { transform: translate(40px, 30px) scale(1.05); }
+      100% { transform: translate(-20px, -60px) scale(1); }
+    }
+    /* Light section blobs */
+    .blobs-light .blob { opacity: 0.06; }
+    /* Dark section blobs */
+    .blobs-dark .blob { opacity: 0.15; }
+    /* Purple section blobs */
+    .blobs-purple .blob { opacity: 0.2; }
+
+    /* Portfolio image simulation */
+    .portfolio-card-bg {
+      position: absolute; inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease;
+    }
+    .portfolio-card-bg { will-change: transform; }
+    .portfolio-card:hover .portfolio-card-bg {
+      transform: scale(1.05);
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MarketingAgency",
+    "name": "Purple Studio",
+    "url": "https://purplestudio.gt",
+    "logo": "https://purplestudio.gt/Logo Purple horizontal.png",
+    "description": "Agencia creativa guatemalteca especializada en branding, social media, ATL/BTL, audiovisuales y estrategia de marketing.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Guatemala",
+      "addressCountry": "GT"
+    },
+    "sameAs": [
+      "https://www.instagram.com/purplestudio.gt",
+      "https://www.facebook.com/purplestudio.gt"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<!-- Rising Bubbles — Global lava effect -->
+  <div class="rising-bubble"></div>
+  <div class="rising-bubble"></div>
+  <div class="rising-bubble"></div>
+  <div class="rising-bubble"></div>
+  <div class="rising-bubble"></div>
+  <div class="rising-bubble"></div>
+  <div class="rising-bubble"></div>
+  <div class="rising-bubble"></div>
+  <div class="rising-bubble"></div>
+  <div class="rising-bubble"></div>
+  <div class="rising-bubble"></div>
+</div>
+
+<!-- Scroll Progress -->
+<div id="scroll-progress"></div>
+
+<!-- Custom Cursor -->
+<div id="cursor"></div>
+<div id="cursor-follower"></div>
+
+<!-- ═══════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════ -->
+<nav class="nav" id="navbar">
+  <a href="#inicio" class="nav-logo"><img src="Material de apoyo/Logo Purple horizontal.png" alt="Purple Studio" class="nav-logo-img"></a>
+  <div class="nav-links">
+    <a href="#nosotros" data-section="nosotros">NOSOTROS</a>
+    <a href="#servicios" data-section="servicios">SERVICIOS</a>
+    <a href="portafolio.html" data-section="portafolio">PORTAFOLIO</a>
+    <a href="blog.html" data-section="blog">BLOG</a>
+    <a href="#careers" data-section="careers">CAREERS</a>
+    <a href="#contacto" data-section="contacto">CONTACTO</a>
+  </div>
+  <a href="HTMLs/contacto.html" class="nav-cta" data-cursor="expand">AGENDEMOS</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#nosotros" class="mobile-link">NOSOTROS</a>
+  <a href="#servicios" class="mobile-link">SERVICIOS</a>
+  <a href="portafolio.html" class="mobile-link">PORTAFOLIO</a>
+  <a href="blog.html" class="mobile-link">BLOG</a>
+  <a href="#careers" class="mobile-link">CAREERS</a>
+  <a href="#contacto" class="mobile-link">CONTACTO</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section class="hero section-reveal" id="inicio">
+  <!-- Animated blobs background -->
+
+  <!-- Nubes decorativas hero -->
+  <img src="Resources/NUBES/nube-1.png" alt="" style="position:absolute;top:15%;left:5%;width:320px;opacity:0.15;pointer-events:none;z-index:0;filter:brightness(0.5) sepia(1) hue-rotate(220deg) saturate(5);animation:cloudDriftLeft 28s ease-in-out infinite">
+  <img src="Resources/NUBES/nube-2.png" alt="" style="position:absolute;bottom:20%;left:10%;width:280px;opacity:0.12;pointer-events:none;z-index:0;filter:brightness(0.5) sepia(1) hue-rotate(220deg) saturate(5);animation:cloudDriftLeft 35s ease-in-out infinite 4s">
+  <img src="Resources/NUBES/nube-3.png" alt="" style="position:absolute;top:40%;right:5%;width:300px;opacity:0.13;pointer-events:none;z-index:0;filter:brightness(0.5) sepia(1) hue-rotate(220deg) saturate(5);animation:cloudDriftRight 32s ease-in-out infinite 2s">
+
+  <div class="hero-left">
+    <h1>
+      <div class="hero-line-wrapper"><span class="hero-line" style="font-size:100px">RELÁJATE.</span></div>
+      <div class="hero-line-wrapper"><span class="hero-line" style="font-size:88px">EL PILOTO SÍ</span></div>
+      <div class="hero-line-wrapper"><span class="hero-line" style="font-size:72px">LEYÓ EL BRIEF</span></div>
+    </h1>
+    <span class="hero-overline" style="margin-top:24px;margin-bottom:0">AGENCIA CREATIVA &middot; GUATEMALA</span>
+    <p class="hero-body">Creamos con profundidad, honestidad y un toque de humor. No mendigamos atención. La merecemos.</p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn-primary" data-cursor="expand">AGENDEMOS UNA LLAMADA</a>
+      <a href="portafolio.html" class="btn-secondary" style="color:var(--color-dark)">VER PORTAFOLIO &rarr;</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-mascot-wrapper mascot-hover">
+      <img src="Hola soy Purp/Purp Morado.png" alt="Purp Morado — mascot principal" class="mascot-img" id="mascot-purple" style="width:380px;height:auto">
+      <div class="speech-bubble" style="border: 2px solid #7B3FE4; top: -60px; right: -30px; color: #5C2DB0;" id="hero-bubble">TRANQUILO, ESTAMOS A CARGO.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CLIENTS MARQUEE
+═══════════════════════════════════════════ -->
+<div style="text-align:center;padding:28px 0 12px">
+  <span class="clients-label">YA ABORDARON:</span>
+</div>
+<section class="clients" style="position:relative">
+  <div class="marquee-wrapper">
+    <div class="marquee-track">
+      <!-- Set 1 -->
+      <img class="marquee-logo" src="Logos/BAC.png" alt="BAC">
+      <img class="marquee-logo" src="Logos/Logo-Herbalife2023 V2.png" alt="Herbalife">
+      <img class="marquee-logo" src="Logos/Gillette.png" alt="Gillette">
+      <img class="marquee-logo" src="Logos/Charmin.png" alt="Charmin">
+      <img class="marquee-logo" src="Logos/PRF_Logo_Dolo-Neurobion_RGB.png" alt="Neurobión">
+      <img class="marquee-logo" src="Logos/PeptoBismol_LogoconFondo.png" alt="Pepto-Bismol">
+      <img class="marquee-logo" src="Logos/LogoCebion.png" alt="Cebión">
+      <img class="marquee-logo" src="Logos/Vick_Logo.png" alt="Vick">
+      <img class="marquee-logo" src="Logos/GEO.png" alt="GEO">
+      <img class="marquee-logo" src="Logos/TOTO.png" alt="TOTO">
+      <img class="marquee-logo" src="Logos/MAREX.png" alt="MAREX">
+      <img class="marquee-logo" src="Logos/CIEN.png" alt="CIEN">
+      <img class="marquee-logo" src="Logos/Corpstatus.png" alt="Corpstatus">
+      <img class="marquee-logo" src="Logos/CelesteImperio.png" alt="Celeste Imperio">
+      <img class="marquee-logo" src="Logos/ElPuente.png" alt="El Puente">
+      <img class="marquee-logo" src="Logos/LOGO GRUPO BALU.png" alt="Grupo Balu">
+      <img class="marquee-logo" src="Logos/Logovivera.png" alt="Vivera">
+      <img class="marquee-logo" src="Logos/BuntyLogo.png" alt="Bunty">
+      <!-- Set 2 — duplicado para loop seamless -->
+      <img class="marquee-logo" src="Logos/BAC.png" alt="BAC">
+      <img class="marquee-logo" src="Logos/Logo-Herbalife2023 V2.png" alt="Herbalife">
+      <img class="marquee-logo" src="Logos/Gillette.png" alt="Gillette">
+      <img class="marquee-logo" src="Logos/Charmin.png" alt="Charmin">
+      <img class="marquee-logo" src="Logos/PRF_Logo_Dolo-Neurobion_RGB.png" alt="Neurobión">
+      <img class="marquee-logo" src="Logos/PeptoBismol_LogoconFondo.png" alt="Pepto-Bismol">
+      <img class="marquee-logo" src="Logos/LogoCebion.png" alt="Cebión">
+      <img class="marquee-logo" src="Logos/Vick_Logo.png" alt="Vick">
+      <img class="marquee-logo" src="Logos/GEO.png" alt="GEO">
+      <img class="marquee-logo" src="Logos/TOTO.png" alt="TOTO">
+      <img class="marquee-logo" src="Logos/MAREX.png" alt="MAREX">
+      <img class="marquee-logo" src="Logos/CIEN.png" alt="CIEN">
+      <img class="marquee-logo" src="Logos/Corpstatus.png" alt="Corpstatus">
+      <img class="marquee-logo" src="Logos/CelesteImperio.png" alt="Celeste Imperio">
+      <img class="marquee-logo" src="Logos/ElPuente.png" alt="El Puente">
+      <img class="marquee-logo" src="Logos/LOGO GRUPO BALU.png" alt="Grupo Balu">
+      <img class="marquee-logo" src="Logos/Logovivera.png" alt="Vivera">
+      <img class="marquee-logo" src="Logos/BuntyLogo.png" alt="Bunty">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════════ -->
+<section class="services section-reveal" id="servicios" style="position:relative">
+  <!-- Doodle servicios — derecha -->
+  <div class="doodle" style="top:80px;right:-120px;width:320px;transform:rotate(10deg) scaleX(-1)">
+    <img src="Doodles/Doodles-02.png" alt="">
+  </div>
+  <div class="section-header">
+    <span class="section-overline">LAS RUTAS</span>
+    <h2 class="section-title">NUESTRAS RUTAS</h2>
+    <p class="section-subtitle">CADA MARCA TIENE UN DESTINO.</p>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="services-grid">
+    <!-- Card 1: BRANDING — Purple -->
+    <a href="HTMLs/branding-guatemala.html" class="service-card card-purple mascot-entry" data-cursor="expand" data-service="branding" style="--card-color:#7B3FE4">
+      <div class="card-mascot mascot-hover">
+        <img src="Hola soy Purp/Purp Morado.png" alt="Purp Morado" class="mascot-img" style="height:140px;width:auto">
+        <div class="speech-bubble" style="border-color: #7B3FE4; top: -10px; right: 0; color: #5C2DB0;">TRANQUILO.</div>
+      </div>
+      <span class="card-badge">BRANDING</span>
+      <p>Identidad visual · Manual de marca · Naming · Papelería corporativa. Para marcas que tienen algo que decir.</p>
+      <span class="card-arrow">&rarr;</span>
+    </a>
+    <!-- Card 2: SOCIAL MEDIA — Red -->
+    <a href="HTMLs/social-media-agencia-guatemala.html" class="service-card card-red mascot-entry" data-cursor="expand" data-service="social" style="--card-color:#E63B2E">
+      <div class="card-mascot mascot-hover">
+        <img src="Hola soy Purp/Purp Rojo.png" alt="Purp Rojo" class="mascot-img" style="height:130px;width:auto">
+        <div class="speech-bubble" style="border-color: #E63B2E; top: -10px; right: 0; color: #B82A22;">DALE.</div>
+      </div>
+      <span class="card-badge">SOCIAL MEDIA</span>
+      <p>Estrategia de contenido · Diseño de posts · Gestión de comunidad · Campañas pagadas. Contenido que detiene el scroll.</p>
+      <span class="card-arrow">&rarr;</span>
+    </a>
+    <!-- Card 3: ATL & BTL — Orange -->
+    <a href="HTMLs/campanas-atl-btl-guatemala.html" class="service-card card-orange mascot-entry" data-cursor="expand" data-service="atl" style="--card-color:#F0A500">
+      <div class="card-mascot mascot-hover">
+        <img src="Hola soy Purp/Purp Naranja.png" alt="Purp Naranja" class="mascot-img" style="height:140px;width:auto">
+        <div class="speech-bubble" style="border-color: #F0A500; top: -10px; right: 0; color: #C88B00;">CONFÍA.</div>
+      </div>
+      <span class="card-badge">ATL &amp; BTL</span>
+      <p>Publicidad exterior · Spots TV/radio · Activaciones BTL · Eventos de marca. Difícil ignorar este gran trabajo.</p>
+      <span class="card-arrow">&rarr;</span>
+    </a>
+    <!-- Card 4: MEDIOS — Turquoise -->
+    <a href="HTMLs/medios-guatemala.html" class="service-card card-turquoise mascot-entry" data-cursor="expand" data-service="medios" style="--card-color:#00BCD4">
+      <div class="card-mascot mascot-hover">
+        <img src="Hola soy Purp/Purp Turquesa.png" alt="Purp Turquesa" class="mascot-img" style="height:120px;width:auto">
+        <div class="speech-bubble" style="border-color: #00BCD4; top: -10px; right: 0; color: #0097A7;">¿EN SERIO?</div>
+      </div>
+      <span class="card-badge">MEDIOS</span>
+      <p>Prensa escrita · Revistas · Radio · OOH · Medios digitales. Donde tu marca necesite estar, ahí llegamos.</p>
+      <span class="card-arrow">&rarr;</span>
+    </a>
+    <!-- Card 5: AUDIOVISUALES — Green -->
+    <a href="HTMLs/produccion-audiovisual-guatemala.html" class="service-card card-green mascot-entry" data-cursor="expand" data-service="audiovisual" style="--card-color:#8DB600">
+      <div class="card-mascot mascot-hover">
+        <img src="Hola soy Purp/Purp Verde.png" alt="Purp Verde" class="mascot-img" style="height:130px;width:auto">
+        <div class="speech-bubble" style="border-color: #8DB600; top: -10px; right: 0; color: #6E8E00;">POR FIN.</div>
+      </div>
+      <span class="card-badge">AUDIOVISUALES</span>
+      <p>Video corporativo · Spots publicitarios · Fotografía comercial · Motion graphics. No es stock. Tranquilo.</p>
+      <span class="card-arrow">&rarr;</span>
+    </a>
+    <!-- Card 6: EDITORIAL — Gray -->
+    <a href="HTMLs/diseno-editorial-guatemala.html" class="service-card card-gray mascot-entry" data-cursor="expand" data-service="editorial" style="--card-color:#6B6B6B">
+      <div class="card-mascot mascot-hover">
+        <img src="Hola soy Purp/Purp Gris.png" alt="Purp Gris" class="mascot-img" style="height:140px;width:auto">
+        <div class="speech-bubble" style="border-color: #8A8A8A; top: -10px; right: 0; color: #666;">LO SÉ.</div>
+      </div>
+      <span class="card-badge">EDITORIAL</span>
+      <p>Catálogos · Brochures · Reportes anuales · Presentaciones. Diseño con intención, no con relleno.</p>
+      <span class="card-arrow">&rarr;</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PORTFOLIO
+═══════════════════════════════════════════ -->
+<section class="portfolio section-reveal" id="portafolio" style="position:relative">
+  <div class="portfolio-header" style="position:relative;z-index:2">
+    <h2>PASAPORTE PURPLE</h2>
+    <p class="section-subtitle">PROYECTOS QUE SOBREVIVIERON A LA TURBULENCIA.</p>
+  </div>
+
+  <div class="portfolio-grid" style="position:relative;z-index:2">
+    <a class="portfolio-card" href="portafolio.html?cat=audiovisuales" style="text-decoration:none;display:block;cursor:pointer">
+      <div class="portfolio-card-bg" style="background-image:url('Portafolio/Audiovisuales/Zurich/CAFE.jpg');background-size:cover;background-position:center"></div>
+      <div class="portfolio-card-content"><div class="portfolio-card-title">ZÜRICH</div><div class="portfolio-card-tag">AUDIOVISUALES</div></div>
+      <span class="portfolio-card-arrow">&nearr;</span>
+    </a>
+    <a class="portfolio-card" href="portafolio.html?cat=branding" style="text-decoration:none;display:block;cursor:pointer">
+      <div class="portfolio-card-bg" style="background:linear-gradient(135deg,#2D1B69 0%,#7B3FE4 50%,#5A2DB8 100%)"></div>
+      <div class="portfolio-card-content"><div class="portfolio-card-title">FRUNCHY</div><div class="portfolio-card-tag">BRANDING</div></div>
+      <!-- Placeholder: agregar imagen cuando esté disponible -->
+      <span class="portfolio-card-arrow">&nearr;</span>
+    </a>
+    <a class="portfolio-card" href="portafolio.html?cat=atl-btl" style="text-decoration:none;display:block;cursor:pointer">
+      <div class="portfolio-card-bg" style="background-image:url('Portafolio/ATL & BTL/Vick Mundial 2026/Mockup 1..jpg');background-size:cover;background-position:center"></div>
+      <div class="portfolio-card-content"><div class="portfolio-card-title">VICK MUNDIAL</div><div class="portfolio-card-tag">ATL &amp; BTL</div></div>
+      <span class="portfolio-card-arrow">&nearr;</span>
+    </a>
+    <a class="portfolio-card" href="portafolio.html?cat=social-media" style="text-decoration:none;display:block;cursor:pointer">
+      <div class="portfolio-card-bg" style="background:linear-gradient(170deg, #E65100 0%, #FF8F00 30%, #F4511E 60%, #BF360C 100%)"></div>
+      <div class="portfolio-card-content"><div class="portfolio-card-title">CEBIÓN</div><div class="portfolio-card-tag">SOCIAL MEDIA</div></div>
+      <span class="portfolio-card-arrow">&nearr;</span>
+    </a>
+    <a class="portfolio-card" href="portafolio.html?cat=editorial" style="text-decoration:none;display:block;cursor:pointer">
+      <div class="portfolio-card-bg" style="background-image:url('Portafolio/Editorial/BAC/01. BAC.png');background-size:cover;background-position:center"></div>
+      <div class="portfolio-card-content"><div class="portfolio-card-title">BAC</div><div class="portfolio-card-tag">EDITORIAL</div></div>
+      <span class="portfolio-card-arrow">&nearr;</span>
+    </a>
+    <a class="portfolio-card" href="portafolio.html?cat=medios" style="text-decoration:none;display:block;cursor:pointer">
+      <div class="portfolio-card-bg" style="background:linear-gradient(135deg,#006064 0%,#00BCD4 50%,#80DEEA 100%)"></div>
+      <div class="portfolio-card-content"><div class="portfolio-card-title">MEDIOS</div><div class="portfolio-card-tag">MEDIOS</div></div>
+      <span class="portfolio-card-arrow">&nearr;</span>
+    </a>
+  </div>
+
+  <div class="portfolio-cta" style="position:relative;z-index:2">
+    <a href="portafolio.html" data-cursor="expand">VER TODOS LOS PROYECTOS &rarr;</a>
+  </div>
+
+  <div style="position:relative;z-index:2;text-align:center;margin-top:32px;padding:32px;background:rgba(123,63,228,0.06);border-radius:12px;border:1px solid rgba(123,63,228,0.2);">
+    <p style="font-family:'DK Udon Soup',sans-serif;font-size:20px;color:var(--color-purple);text-transform:uppercase;letter-spacing:0.2em;">¿Ya voló con nosotros?</p>
+    <h3 style="font-family:'EuclidFlex-Bold',sans-serif;font-size:36px;margin-top:8px;letter-spacing:2px;">HABLEMOS DE TU PRÓXIMO PROYECTO</h3>
+    <a href="#contacto" class="btn-primary" style="margin-top:20px;display:inline-block;" data-cursor="expand">RETOMEMOS EL VUELO</a>
+  </div>
+
+  <!-- Decorative Gray mascot -->
+  <div class="portfolio-mascot-deco">
+    <img src="Hola soy Purp/Purp Gris.png" alt="Purp Gris" style="width:160px;opacity:1">
+    <div style="position:absolute;top:-50px;right:10px;font-family:'DK Udon Soup',sans-serif;font-size:20px;color:white;background:#8A8A8A;padding:4px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:0.2em;white-space:nowrap;">NO ES STOCK.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════════ -->
+<section class="about section-reveal" id="nosotros">
+  <!-- Nubes decorativas -->
+  <img src="Resources/NUBES/nube-1.png" alt="" style="position:absolute;top:20px;right:5%;width:300px;opacity:0.25;pointer-events:none;z-index:0;filter:brightness(0.5) sepia(1) hue-rotate(220deg) saturate(5);animation:cloudDriftRight 28s ease-in-out infinite">
+  <img src="Resources/NUBES/nube-2.png" alt="" style="position:absolute;top:40%;right:15%;width:350px;opacity:0.2;pointer-events:none;z-index:0;filter:brightness(0.5) sepia(1) hue-rotate(220deg) saturate(5);animation:cloudDriftRight 35s ease-in-out infinite 3s">
+  <img src="Resources/NUBES/nube-3.png" alt="" style="position:absolute;bottom:30px;left:5%;width:280px;opacity:0.18;pointer-events:none;z-index:0;filter:brightness(0.5) sepia(1) hue-rotate(220deg) saturate(5);animation:cloudDriftLeft 32s ease-in-out infinite 2s">
+  <div class="about-grid" style="position:relative;z-index:1">
+    <div class="about-left">
+      <span class="about-overline">TRES PILOTOS AL MANDO</span>
+      <h2>COMO SURGIÓ<br>EL VUELO ATA 12</h2>
+      <p class="about-body">Lo que empezó como un vuelo experimental es hoy la aerolínea oficial de las marcas que se atreven a cruzar la turbulencia y conquistar nuevos destinos.</p>
+      <div class="about-stats stats-row">
+        <div>
+          <div class="about-stat-number stat-number" data-target="8">8</div>
+          <div class="about-stat-label">AÑOS</div>
+        </div>
+        <div>
+          <div class="about-stat-number stat-number" data-target="24">24+</div>
+          <div class="about-stat-label">MARCAS</div>
+        </div>
+        <div>
+          <div class="about-stat-number stat-number" data-target="3">3</div>
+          <div class="about-stat-label">PILOTOS</div>
+        </div>
+      </div>
+      <a href="#contacto" class="about-link">CONÓCENOS &rarr;</a>
+    </div>
+    <div class="about-right">
+      <div class="pilots-grid">
+        <div class="pilot">
+          <div class="pilot-avatar" style="border: 3px solid var(--color-orange);">
+            <span style="color: var(--color-orange);">A</span>
+          </div>
+          <div class="pilot-name">ÁLVARO</div>
+          <div class="pilot-role">DIRECCIÓN CREATIVA</div>
+        </div>
+        <div class="pilot">
+          <div class="pilot-avatar" style="border: 3px solid var(--color-turquoise);">
+            <span style="color: var(--color-turquoise);">T</span>
+          </div>
+          <div class="pilot-name">TANY</div>
+          <div class="pilot-role">DIRECCIÓN DE ARTE</div>
+        </div>
+        <div class="pilot">
+          <div class="pilot-avatar" style="border: 3px solid var(--color-red);">
+            <span style="color: var(--color-red);">A</span>
+          </div>
+          <div class="pilot-name">AMANDA</div>
+          <div class="pilot-role">ESTRATEGIA</div>
+        </div>
+      </div>
+      <!-- Decorative scribbles -->
+      <svg style="position:absolute;top:20%;left:10%;opacity:0.08;width:200px" viewBox="0 0 200 80" fill="none">
+        <path d="M10 40 Q50 10, 100 40 T190 35" stroke="#7B3FE4" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     BLOG
+═══════════════════════════════════════════ -->
+<section class="blog section-reveal" id="blog" style="position:relative">
+  <div class="section-header">
+    <h2 class="section-title" style="font-size:64px">EL DIARIO DE PURPLE</h2>
+    <p class="section-subtitle">PENSAMIENTOS QUE NO CABEN EN UN BRIEF.</p>
+  </div>
+
+  <div class="blog-grid">
+    <div class="blog-card" style="border-top: 4px solid var(--color-orange);">
+      <span class="blog-card-badge" style="color: var(--color-orange);">ATL &amp; BTL</span>
+      <h3>¿Por qué tu campaña de BTL no funcionó? (Hint: no leyeron el brief)</h3>
+      <p>Spoiler: no era el presupuesto. Era la falta de estrategia detrás de cada activación.</p>
+      <div class="blog-card-footer">
+        <span class="blog-card-date">Mar 15, 2025</span>
+        <a href="blog/post-atl-btl.html" class="blog-card-link" style="color: var(--color-orange);">LEER MÁS &rarr;</a>
+      </div>
+    </div>
+    <div class="blog-card" style="border-top: 4px solid var(--color-purple);">
+      <span class="blog-card-badge" style="color: var(--color-purple);">BRANDING</span>
+      <h3>Branding sin identidad es solo decoración cara</h3>
+      <p>Un logo bonito no es branding. Y no, cambiar la paleta de colores tampoco cuenta.</p>
+      <div class="blog-card-footer">
+        <span class="blog-card-date">Feb 28, 2025</span>
+        <a href="blog/post-branding.html" class="blog-card-link" style="color: var(--color-purple);">LEER MÁS &rarr;</a>
+      </div>
+    </div>
+    <div class="blog-card" style="border-top: 4px solid var(--color-red);">
+      <span class="blog-card-badge" style="color: var(--color-red);">SOCIAL MEDIA</span>
+      <h3>El algoritmo no es el problema. Tu contenido sí.</h3>
+      <p>Antes de culpar al algoritmo, revisá si tu contenido realmente merece atención.</p>
+      <div class="blog-card-footer">
+        <span class="blog-card-date">Feb 10, 2025</span>
+        <a href="blog/post-social-media.html" class="blog-card-link" style="color: var(--color-red);">LEER MÁS &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CTA FINAL
+═══════════════════════════════════════════ -->
+<section class="cta-section section-reveal" id="contacto" style="position:relative">
+  <div class="cta-center">
+    <span class="cta-overline">EL CIELO NO ES EL LÍMITE.</span>
+    <div class="cta-title">
+      <span>¿ESTÁN LISTOS</span>
+      <span>PARA EL MEJOR</span>
+      <span class="accent">VIAJE?</span>
+    </div>
+    <p class="cta-body">30 minutos. Sin compromiso.</p>
+    <a href="HTMLs/contacto.html" class="cta-btn" data-cursor="expand">AGENDEMOS UNA LLAMADA GRATUITA</a>
+  </div>
+
+  <!-- 6 Mascots around CTA -->
+  <div class="cta-mascot m1">
+    <img src="Hola soy Purp/Purp Morado.png" alt="Purp Morado" class="mascot-img" style="width:100%">
+    <div class="speech-bubble show" style="border-color:#7B3FE4;top:-40px;left:50%;transform:translateX(-50%) scale(1);color:#5C2DB0;font-size:12px;opacity:0">TRANQUILO.</div>
+  </div>
+  <div class="cta-mascot m2">
+    <img src="Hola soy Purp/Purp Rojo.png" alt="Purp Rojo" class="mascot-img" style="width:100%">
+    <div class="speech-bubble show" style="border-color:#E63B2E;top:-40px;left:50%;transform:translateX(-50%) scale(1);color:#B82A22;font-size:12px;opacity:0">DALE.</div>
+  </div>
+  <div class="cta-mascot m3">
+    <img src="Hola soy Purp/Purp Naranja.png" alt="Purp Naranja" class="mascot-img" style="width:100%">
+    <div class="speech-bubble show" style="border-color:#F0A500;top:-40px;left:50%;transform:translateX(-50%) scale(1);color:#C88B00;font-size:12px;opacity:0">CONFÍA.</div>
+  </div>
+  <div class="cta-mascot m4">
+    <img src="Hola soy Purp/Purp Turquesa.png" alt="Purp Turquesa" class="mascot-img" style="width:100%">
+    <div class="speech-bubble show" style="border-color:#00BCD4;top:-40px;left:50%;transform:translateX(-50%) scale(1);color:#0097A7;font-size:12px;opacity:0">¿EN SERIO?</div>
+  </div>
+  <div class="cta-mascot m5">
+    <img src="Hola soy Purp/Purp Verde.png" alt="Purp Verde" class="mascot-img" style="width:100%">
+    <div class="speech-bubble show" style="border-color:#8DB600;top:-40px;left:50%;transform:translateX(-50%) scale(1);color:#6E8E00;font-size:12px;opacity:0">POR FIN.</div>
+  </div>
+  <div class="cta-mascot m6">
+    <img src="Hola soy Purp/Purp Gris.png" alt="Purp Gris" class="mascot-img" style="width:100%">
+    <div class="speech-bubble show" style="border-color:#8A8A8A;top:-40px;left:50%;transform:translateX(-50%) scale(1);color:#666;font-size:12px;opacity:0">OKAY.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CAREERS
+═══════════════════════════════════════════ -->
+<section class="careers section-reveal" id="careers" style="position:relative;overflow:hidden">
+  <!-- Nubes decorativas -->
+  <img src="Resources/NUBES/nube-1.png" alt="" style="position:absolute;top:-20px;right:5%;width:400px;opacity:0.08;pointer-events:none;z-index:1;animation:cloudDriftRight 28s ease-in-out infinite">
+  <img src="Resources/NUBES/nube-2.png" alt="" style="position:absolute;bottom:40px;right:20%;width:350px;opacity:0.1;pointer-events:none;z-index:1;animation:cloudDriftRight 35s ease-in-out infinite 4s">
+  <img src="Resources/NUBES/nube-3.png" alt="" style="position:absolute;top:50%;left:5%;width:250px;opacity:0.06;pointer-events:none;z-index:1;animation:cloudDriftLeft 32s ease-in-out infinite 2s">
+  <div class="section-header" style="position:relative;z-index:2">
+    <span class="section-overline">COPILOTO</span>
+    <h2 class="section-title">ÚNETE A LA TRIPULACIÓN</h2>
+    <p class="section-subtitle">BUSCAMOS CREATIVOS QUE NO LE TENGAN MIEDO A LA TURBULENCIA.</p>
+    <div class="section-line" style="background:var(--color-orange)"></div>
+  </div>
+  <form class="careers-form" id="careers-form" style="position:relative;z-index:2">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <span style="font-family:'DK Udon Soup',sans-serif;font-size:14px;color:var(--color-orange);text-transform:uppercase;letter-spacing:0.15em">✦ PASAJERO</span>
+      <input type="text" name="nombre" placeholder="¿Cómo te llamás?" required>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <span style="font-family:'DK Udon Soup',sans-serif;font-size:14px;color:var(--color-orange);text-transform:uppercase;letter-spacing:0.15em">✦ FRECUENCIA DE CONTACTO</span>
+      <input type="email" name="email" placeholder="Tu correo electrónico" required>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <span style="font-family:'DK Udon Soup',sans-serif;font-size:14px;color:var(--color-orange);text-transform:uppercase;letter-spacing:0.15em">✦ BITÁCORA DE VUELO</span>
+      <input type="url" name="portafolio" placeholder="URL de tu portafolio">
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <span style="font-family:'DK Udon Soup',sans-serif;font-size:14px;color:var(--color-orange);text-transform:uppercase;letter-spacing:0.15em">✦ MOTIVO DE ABORDAJE</span>
+      <textarea name="mensaje" placeholder="¿Por qué querés volar con nosotros?"></textarea>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <span style="font-family:'DK Udon Soup',sans-serif;font-size:14px;color:var(--color-orange);text-transform:uppercase;letter-spacing:0.15em">✦ PASAPORTE</span>
+      <label style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);cursor:pointer;transition:border-color 0.3s ease">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+        <span id="cv-label" style="font-family:'EuclidFlexLight',sans-serif;font-size:16px;color:rgba(255,255,255,0.4)">Sube tu CV (PDF)</span>
+        <input type="file" name="cv" accept=".pdf" style="display:none" onchange="document.getElementById('cv-label').textContent=this.files[0]?this.files[0].name:'Sube tu CV (PDF)';document.getElementById('cv-label').style.color=this.files[0]?'#FFFFFF':'rgba(255,255,255,0.4)'">
+      </label>
+    </div>
+    <button type="submit" class="btn-primary" style="align-self:center;margin-top:12px">ENVÍA TU PORTAFOLIO</button>
+  </form>
+  <div class="careers-success" id="careers-success">¡RECIBIDO! TE CONTACTAREMOS PRONTO.</div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="footer" style="position:relative;overflow:hidden">
+  <div class="footer-main" style="position:relative;z-index:2">
+    <div class="footer-brand">
+      <img src="Material de apoyo/Logo Purple horizontal.png" alt="Purple Studio" style="height:125px;width:auto;margin-bottom:16px;display:block">
+      <p class="footer-tagline">Somos seriamente irónicos</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="#" class="footer-social" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="#" class="footer-social" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+        <a href="#" class="footer-social" aria-label="Vimeo">
+          <svg viewBox="0 0 24 24"><path d="M23.977 6.416c-.105 2.338-1.739 5.543-4.894 9.609-3.268 4.247-6.026 6.37-8.29 6.37-1.409 0-2.578-1.294-3.553-3.881L5.322 11.4C4.603 8.816 3.834 7.522 3.01 7.522c-.179 0-.806.378-1.881 1.132L0 7.197a315.065 315.065 0 003.501-3.128C5.08 2.701 6.266 1.984 7.055 1.91c1.867-.18 3.016 1.1 3.447 3.838.465 2.953.789 4.789.971 5.507.539 2.45 1.131 3.674 1.776 3.674.502 0 1.256-.796 2.265-2.385 1.004-1.589 1.54-2.797 1.612-3.628.144-1.371-.395-2.061-1.614-2.061-.574 0-1.167.121-1.777.391 1.186-3.868 3.434-5.757 6.762-5.637 2.473.06 3.628 1.664 3.493 4.797l-.013.01z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">RUTAS</div>
+      <a href="#servicios">Servicios</a>
+      <a href="portafolio.html">Portafolio</a>
+      <a href="blog.html">Blog</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#careers">Careers</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">DESTINOS</div>
+      <a href="#">Agencia Creativa GT</a>
+      <a href="HTMLs/branding-guatemala.html">Branding Guatemala</a>
+      <a href="HTMLs/social-media-agencia-guatemala.html">Social Media Agency</a>
+      <a href="HTMLs/produccion-audiovisual-guatemala.html">Producción Audiovisual</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">ABORDEMOS</div>
+      <a href="mailto:info@somospurple.studio">info@somospurple.studio</a>
+      <a href="tel:+50200000000">+502 0000 0000</a>
+      <a href="HTMLs/contacto.html" class="accent-link">AGENDEMOS &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Purple marquee bar -->
+  <div class="footer-marquee-bar">
+    <div class="footer-marquee-track">
+      <span class="footer-marquee-item">RELÁJATE &middot; EL PILOTO SÍ LEYÓ EL BRIEF</span>
+      <span class="footer-marquee-item">RELÁJATE &middot; EL PILOTO SÍ LEYÓ EL BRIEF</span>
+      <span class="footer-marquee-item">RELÁJATE &middot; EL PILOTO SÍ LEYÓ EL BRIEF</span>
+      <span class="footer-marquee-item">RELÁJATE &middot; EL PILOTO SÍ LEYÓ EL BRIEF</span>
+      <span class="footer-marquee-item">RELÁJATE &middot; EL PILOTO SÍ LEYÓ EL BRIEF</span>
+      <span class="footer-marquee-item">RELÁJATE &middot; EL PILOTO SÍ LEYÓ EL BRIEF</span>
+      <span class="footer-marquee-item">RELÁJATE &middot; EL PILOTO SÍ LEYÓ EL BRIEF</span>
+      <span class="footer-marquee-item">RELÁJATE &middot; EL PILOTO SÍ LEYÓ EL BRIEF</span>
+    </div>
+  </div>
+
+  <div class="footer-copyright">
+    &copy; 2025 Purple Studio &middot; Guatemala &middot; Todos los derechos a bordo.
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="back-to-top" aria-label="Volver arriba" data-cursor="expand">
+  <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+</button>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+(function() {
+
+  // ═══════════════════════════════════════════
+  // PREFERS REDUCED MOTION CHECK
+  // ═══════════════════════════════════════════
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ═══════════════════════════════════════════
+  // HAMBURGER MENU
+  // ═══════════════════════════════════════════
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ═══════════════════════════════════════════
+  // NAV SCROLL STATE
+  // ═══════════════════════════════════════════
+  const nav = document.getElementById('navbar');
+  const scrollProgress = document.getElementById('scroll-progress');
+  const backToTop = document.getElementById('back-to-top');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    nav.classList.toggle('scrolled', scrollY > 80);
+    backToTop.classList.toggle('visible', scrollY > 400);
+
+    // Scroll progress
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+    scrollProgress.style.width = progress + '%';
+  });
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ═══════════════════════════════════════════
+  // CUSTOM CURSOR
+  // ═══════════════════════════════════════════
+  if (window.innerWidth > 768) {
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursor-follower');
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+
+    function animateFollower() {
+      followerX += (mouseX - followerX) * 0.15;
+      followerY += (mouseY - followerY) * 0.15;
+      follower.style.left = followerX + 'px';
+      follower.style.top = followerY + 'px';
+      requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+
+    document.querySelectorAll('[data-cursor="expand"], a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => follower.classList.add('expand'));
+      el.addEventListener('mouseleave', () => follower.classList.remove('expand'));
+    });
+  }
+
+  // ═══════════════════════════════════════════
+  // HERO BUBBLE DELAY
+  // ═══════════════════════════════════════════
+  setTimeout(() => {
+    const heroBubble = document.getElementById('hero-bubble');
+    if (heroBubble) heroBubble.classList.add('show');
+  }, 2000);
+
+  // ═══════════════════════════════════════════
+  // GSAP ANIMATIONS
+  // ═══════════════════════════════════════════
+  if (typeof gsap !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (prefersReducedMotion) {
+      // Make everything visible, skip animations
+      document.querySelectorAll('.hero-line, .hero-overline, .hero-body, .hero-ctas, .hero-stats').forEach(function(el) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      return;
+    }
+
+    // 1. Hero text stagger — use set + to instead of from for reliability
+    gsap.set(".hero-line", { yPercent: 110, opacity: 0 });
+    gsap.to(".hero-line", {
+      yPercent: 0, opacity: 1, duration: 0.9,
+      stagger: 0.12, ease: "power3.out", delay: 0.3
+    });
+
+    // Hero overline + body fade
+    gsap.set(".hero-overline, .hero-body, .hero-ctas, .hero-stats", { opacity: 0, y: 20 });
+    gsap.to(".hero-overline, .hero-body, .hero-ctas, .hero-stats", {
+      opacity: 1, y: 0, duration: 0.8,
+      stagger: 0.15, ease: "power2.out", delay: 0.8
+    });
+
+    // 2. Mascot float (idle)
+    document.querySelectorAll('.mascot-img').forEach((m, i) => {
+      gsap.to(m, {
+        y: -12, duration: 3, ease: "sine.inOut",
+        yoyo: true, repeat: -1, delay: i * 0.5
+      });
+    });
+
+    // 3. Mascots scroll entry (alternating L/R) — robust set+to pattern
+    document.querySelectorAll('.mascot-entry').forEach((el, i) => {
+      gsap.set(el, { opacity: 1 }); // ensure visible as CSS default
+      ScrollTrigger.create({
+        trigger: el, start: "top 80%", once: true,
+        onEnter: () => gsap.fromTo(el,
+          { x: i % 2 === 0 ? -120 : 120, opacity: 0, rotation: i % 2 === 0 ? -8 : 8 },
+          { x: 0, opacity: 1, rotation: 0, duration: 0.8, ease: "back.out(1.4)" }
+        )
+      });
+    });
+
+    // 4. Service cards reveal — with onRefresh + timeout fallback
+    var cardsRevealed = false;
+    gsap.set(".service-card", { opacity: 0, y: 40 });
+    ScrollTrigger.create({
+      trigger: ".services-grid", start: "top 85%", once: true,
+      onEnter: function() {
+        cardsRevealed = true;
+        gsap.to(".service-card", {
+          opacity: 1, y: 0,
+          duration: 0.6, stagger: 0.1, ease: "power2.out"
+        });
+      },
+      onRefresh: function(self) {
+        if (self.progress === 1 && !cardsRevealed) {
+          cardsRevealed = true;
+          gsap.set(".service-card", { opacity: 1, y: 0 });
+        }
+      }
+    });
+    // Timeout fallback: if cards still invisible after 1.5s, force-show
+    setTimeout(function() {
+      document.querySelectorAll('.service-card').forEach(function(card) {
+        var computed = window.getComputedStyle(card);
+        if (parseFloat(computed.opacity) < 0.1) {
+          gsap.set(card, { opacity: 1, y: 0 });
+        }
+      });
+    }, 1500);
+
+    // 5. CTA final mascots ensemble
+    ScrollTrigger.create({
+      trigger: ".cta-section", start: "top 70%", once: true,
+      onEnter: () => {
+        gsap.from(".cta-mascot", {
+          y: 80, opacity: 0, scale: 0.7,
+          duration: 0.8, stagger: 0.1, ease: "elastic.out(1, 0.5)"
+        });
+        gsap.to(".cta-mascot .speech-bubble", {
+          opacity: 1, duration: 0.4, stagger: 0.15, delay: 0.5
+        });
+      }
+    });
+
+    // Nav active section detection
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    sections.forEach(section => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 50%",
+        end: "bottom 50%",
+        onEnter: () => setActiveNav(section.id),
+        onEnterBack: () => setActiveNav(section.id)
+      });
+    });
+    function setActiveNav(id) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-section') === id);
+      });
+    }
+  } else {
+    // GSAP failed to load — ensure all animated elements remain visible
+    document.querySelectorAll('.service-card, .mascot-entry, .cta-mascot').forEach(function(el) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  }
+
+  // Careers form → webhook
+  document.getElementById('careers-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = this.querySelector('button[type="submit"]');
+    btn.textContent = 'ENVIANDO...';
+    btn.disabled = true;
+
+    const cvFile = this.cv ? this.cv.files[0] : null;
+
+    // Si hay CV, usar FormData. Si no, usar JSON normal.
+    let body, headers;
+
+    if (cvFile) {
+      const formData = new FormData();
+      formData.append('nombre',     this.nombre.value);
+      formData.append('email',      this.email ? this.email.value : '');
+      formData.append('portafolio', this.portafolio.value || 'No especificado');
+      formData.append('mensaje',    this.mensaje.value || 'Sin mensaje');
+      formData.append('fecha',      new Date().toLocaleString('es-GT', {timeZone: 'America/Guatemala'}));
+      formData.append('tipo',       'COPILOTO');
+      formData.append('cv',         cvFile, cvFile.name);
+      body = formData;
+      headers = {};
+    } else {
+      body = JSON.stringify({
+        nombre:     this.nombre.value,
+        email:      this.email ? this.email.value : '',
+        portafolio: this.portafolio.value || 'No especificado',
+        mensaje:    this.mensaje.value || 'Sin mensaje',
+        fecha:      new Date().toLocaleString('es-GT', {timeZone: 'America/Guatemala'}),
+        tipo:       'COPILOTO'
+      });
+      headers = { 'Content-Type': 'application/json' };
+    }
+
+    console.log('Enviando a:', 'https://n8n-production-9c9f.up.railway.app/webhook/purple-copiloto');
+    console.log('Tiene CV:', cvFile ? 'SI - ' + cvFile.name : 'NO');
+
+    try {
+      const response = await fetch('https://n8n-production-9c9f.up.railway.app/webhook/purple-copiloto', {
+        method: 'POST',
+        headers: headers,
+        body: body
+      });
+
+      if (response.ok) {
+        document.getElementById('careers-form').style.display = 'none';
+        const success = document.getElementById('careers-success');
+        if (success) {
+          success.style.display = 'block';
+          success.innerHTML = '<div style="text-align:center;padding:20px 0"><p style="font-family:EuclidFlex-Bold,sans-serif;font-size:22px;text-transform:uppercase;color:white;margin-bottom:8px">¡SOLICITUD RECIBIDA!</p><p style="font-family:EuclidFlexLight,sans-serif;color:rgba(255,255,255,0.7);font-size:16px">El piloto ya leyó tu portafolio. Te contactamos pronto.</p></div>';
+        }
+      } else {
+        throw new Error('Error del servidor: ' + response.status);
+      }
+    } catch (error) {
+      console.error('Error al enviar:', error);
+      btn.textContent = 'ENVÍA TU PORTAFOLIO';
+      btn.disabled = false;
+      alert('Hubo un problema al enviar. Intenta de nuevo.');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

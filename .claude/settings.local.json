@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"C:/Users/Pc/Documents/2026/Purple/Purple Studio Web/Portafolio/Branding/Zurich/\"*.jpg \"C:/Users/Pc/Documents/2026/Purple/Purple Studio Web/Portafolio/Branding/Zurich/\"*.png)",
+      "Bash(npx serve:*)",
+      "Bash(curl -X POST https://n8n-production-9c9f.up.railway.app/webhook/purple-copiloto -H \"Content-Type: application/json\" -d '{\"nombre\":\"Test\",\"email\":\"test@test.com\",\"portafolio\":\"https://test.com\",\"mensaje\":\"prueba\",\"fecha\":\"12/4/2026\",\"tipo\":\"COPILOTO\"}')",
+      "Bash(du -sh Mockups/ Materiales/ Doodles/ \"Tipograf\"*/)"
+    ]
+  }
+}

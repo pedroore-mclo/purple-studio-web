@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio — Purple Studio | Agencia Creativa Guatemala</title>
+  <meta name="description" content="Proyectos reales de branding, social media, ATL/BTL, audiovisuales y estrategia. El portafolio de Purple Studio Guatemala.">
+  <meta property="og:title" content="Portafolio — Purple Studio">
+  <meta property="og:description" content="Proyectos que sobrevivieron a la turbulencia. Casos de branding, campañas y producción audiovisual en Guatemala.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://purplestudio.gt/portafolio.html">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── PORTAFOLIO PAGE STYLES ── */
+    .port-hero {
+      padding: 160px 80px 80px;
+      background: var(--color-bg);
+      position: relative; overflow: hidden;
+    }
+    .port-hero-inner { position: relative; z-index: 2; max-width: 60%; }
+    .port-hero h1 {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 96px; line-height: 0.9;
+      color: var(--color-dark);
+      text-transform: uppercase; letter-spacing: 2px;
+    }
+    .port-hero h1 span { color: var(--color-purple); }
+    .port-hero-sub {
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 20px; color: var(--color-gray-char);
+      text-transform: uppercase; letter-spacing: 0.2em;
+      margin-top: 16px;
+    }
+    .port-hero-blob {
+      position: absolute; top: -80px; right: -80px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: var(--color-purple); opacity: 0.08;
+      filter: blur(80px); pointer-events: none;
+    }
+
+    /* ── PORTFOLIO GRID ── */
+    .port-section {
+      padding: 80px 80px 120px;
+      background: var(--color-bg);
+    }
+    .port-filter {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .port-filter-btn {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 13px; letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 20px; border-radius: 32px;
+      border: 1px solid rgba(26,26,26,0.2);
+      color: rgba(26,26,26,0.6);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .port-filter-btn:hover,
+    .port-filter-btn.active {
+      background: var(--color-purple);
+      color: var(--color-white);
+      border-color: var(--color-purple);
+    }
+
+    .port-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 16px;
+      transition: grid-template-rows 0.3s ease;
+    }
+    .port-card {
+      position: relative; overflow: hidden;
+      border-radius: 16px;
+      display: flex; align-items: flex-end;
+      padding: 28px;
+      transition: transform 0.4s ease, opacity 0.3s ease;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      text-decoration: none;
+    }
+    .port-card:first-child { grid-row: span 1; }
+    /* No-results message */
+    .port-no-results {
+      display: none; grid-column: 1 / -1;
+      text-align: center; padding: 80px 20px;
+    }
+    .port-no-results.visible { display: block; }
+    .port-no-results p {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 24px; color: rgba(26,26,26,0.3);
+      text-transform: uppercase; letter-spacing: 2px;
+    }
+    .port-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
+      z-index: 1;
+      transition: background 0.4s ease;
+    }
+    .port-card:hover { transform: scale(1.02); }
+    .port-card:hover::before {
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+    }
+    .port-card-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform 0.6s ease;
+    }
+    .port-card:hover .port-card-bg { transform: scale(1.06); }
+    .port-card-content {
+      position: relative; z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .port-card:hover .port-card-content { transform: translateY(-6px); }
+    .port-card-tag {
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 13px; color: rgba(255,255,255,0.75);
+      text-transform: uppercase; letter-spacing: 0.2em;
+      display: block; margin-bottom: 6px;
+    }
+    .port-card-title {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 32px; color: white;
+      letter-spacing: 2px; line-height: 1;
+    }
+    .port-card:first-child .port-card-title { font-size: 32px; }
+    .port-card-cta {
+      display: inline-block; margin-top: 12px;
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 13px; letter-spacing: 2px;
+      text-transform: uppercase; color: white;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      padding-bottom: 2px;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .port-card:hover .port-card-cta {
+      opacity: 1; transform: translateY(0);
+    }
+    .port-card-arrow {
+      position: absolute; top: 20px; right: 20px;
+      font-size: 22px; color: white;
+      opacity: 0; transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+    .port-card:hover .port-card-arrow { opacity: 1; }
+
+    /* Coming soon cards */
+    .port-card-soon {
+      background: rgba(123,63,228,0.06);
+      border: 2px dashed rgba(123,63,228,0.2);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      border-radius: 16px; text-align: center;
+      padding: 32px; gap: 12px;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .port-card-soon:hover {
+      background: rgba(123,63,228,0.1);
+      border-color: rgba(123,63,228,0.4);
+    }
+    .port-soon-label {
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 16px; color: rgba(123,63,228,0.5);
+      text-transform: uppercase; letter-spacing: 0.2em;
+    }
+    .port-soon-title {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 24px; color: rgba(26,26,26,0.3);
+      text-transform: uppercase; letter-spacing: 2px;
+    }
+
+    /* CTA strip */
+    .port-cta-strip {
+      margin-top: 64px;
+      background: var(--color-purple-dark);
+      border-radius: 20px;
+      padding: 64px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .port-cta-strip::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(123,63,228,0.3) 0%, transparent 70%);
+    }
+    .port-cta-strip-overline {
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 20px; color: var(--color-orange);
+      text-transform: uppercase; letter-spacing: 0.2em;
+      position: relative; z-index: 1;
+    }
+    .port-cta-strip h2 {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 56px; color: white;
+      letter-spacing: 2px; margin-top: 12px;
+      position: relative; z-index: 1;
+    }
+    .port-cta-strip p {
+      font-family: 'EuclidFlexLight', sans-serif;
+      font-size: 18px; color: rgba(255,255,255,0.7);
+      margin-top: 12px; position: relative; z-index: 1;
+    }
+    .port-cta-strip a {
+      display: inline-block; margin-top: 32px;
+      position: relative; z-index: 1;
+    }
+
+    /* ── CATEGORY SHOWCASE ── */
+    .cat-showcase { display: none; }
+
+    .showcase-project { margin-bottom: 0; }
+
+    .showcase-imgs {
+      display: grid;
+      gap: 8px;
+      height: 68vh;
+      min-height: 440px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .showcase-imgs.two-col  { grid-template-columns: 1fr 1fr; }
+    .showcase-imgs.one-col  { grid-template-columns: 1fr; }
+    .showcase-imgs.three-col {
+      grid-template-columns: 1.4fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .showcase-imgs.three-col img:first-child { grid-row: span 2; }
+
+    .showcase-imgs img,
+    .showcase-imgs .showcase-placeholder {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.6s ease;
+    }
+    .showcase-imgs img:hover { transform: scale(1.025); }
+
+    .showcase-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 18px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(26,26,26,0.08);
+      flex-wrap: wrap;
+    }
+    .showcase-project:last-of-type .showcase-info { border-bottom: none; padding-bottom: 0; }
+    .showcase-tag {
+      font-family: 'DK Udon Soup', sans-serif;
+      font-size: 13px; color: rgba(26,26,26,0.35);
+      text-transform: uppercase; letter-spacing: 0.2em;
+      white-space: nowrap;
+    }
+    .showcase-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: rgba(26,26,26,0.18); flex-shrink: 0;
+    }
+    .showcase-name {
+      font-family: 'EuclidFlex-Bold', sans-serif;
+      font-size: 20px; color: var(--color-dark);
+      letter-spacing: 2px; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .showcase-desc {
+      font-family: 'EuclidFlexLight', sans-serif;
+      font-size: 14px; color: rgba(26,26,26,0.4);
+      line-height: 1.5;
+    }
+
+    /* hero in filtered mode */
+    .port-hero.is-filtered h1 { font-size: 80px; }
+
+    @media (max-width: 1024px) {
+      .showcase-imgs { height: 50vh; min-height: 320px; }
+      .showcase-imgs.three-col { grid-template-columns: 1fr 1fr; }
+    }
+      .port-hero { padding: 140px 40px 60px; }
+      .port-hero h1 { font-size: 72px; }
+      .port-section { padding: 60px 40px 80px; }
+      .port-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 280px 280px 280px;
+      }
+    }
+    @media (max-width: 768px) {
+      .port-hero { padding: 120px 24px 48px; }
+      .port-hero h1 { font-size: 52px; }
+      .port-hero-inner { max-width: 100%; }
+      .port-section { padding: 48px 20px 64px; }
+      .port-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 220px);
+      }
+      .port-cta-strip { padding: 40px 24px; }
+      .port-cta-strip h2 { font-size: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+  <div id="cursor"></div>
+  <div id="cursor-follower"></div>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="Material de apoyo/Logo Purple horizontal.png" alt="Purple Studio" class="nav-logo-img">
+    </a>
+    <div class="nav-links">
+      <a href="index.html#nosotros">NOSOTROS</a>
+      <a href="index.html#servicios">SERVICIOS</a>
+      <a href="portafolio.html" class="active">PORTAFOLIO</a>
+      <a href="blog.html">BLOG</a>
+      <a href="index.html#careers">CAREERS</a>
+      <a href="HTMLs/contacto.html">CONTACTO</a>
+    </div>
+    <a href="HTMLs/contacto.html" class="nav-cta" data-cursor="expand">AGENDEMOS</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#nosotros" class="mobile-link">NOSOTROS</a>
+    <a href="index.html#servicios" class="mobile-link">SERVICIOS</a>
+    <a href="portafolio.html" class="mobile-link">PORTAFOLIO</a>
+    <a href="blog.html" class="mobile-link">BLOG</a>
+    <a href="index.html#careers" class="mobile-link">CAREERS</a>
+    <a href="HTMLs/contacto.html" class="mobile-link">CONTACTO</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="port-hero">
+    <!-- Animated blobs — igual que rutas -->
+    <div class="blob" style="width:420px;height:420px;background:#7B3FE4;bottom:-80px;left:-60px;opacity:0.1"></div>
+    <div class="blob" style="width:280px;height:280px;background:var(--color-orange);top:-40px;right:15%;opacity:0.07"></div>
+    <div class="blob" style="width:180px;height:180px;background:#7B3FE4;top:30%;right:38%;opacity:0.06"></div>
+    <!-- Mascota (cambia por categoría) -->
+    <div style="position:absolute;right:80px;bottom:0;z-index:1;pointer-events:none">
+      <img id="hero-mascot" src="Hola soy Purp/Purp Morado.png" alt="Purp" style="height:380px;width:auto;opacity:1;transition:opacity 0.3s ease">
+    </div>
+    <div class="port-hero-inner">
+      <span style="font-family:'DK Udon Soup',sans-serif;font-size:20px;color:var(--color-orange);text-transform:uppercase;letter-spacing:0.2em;background:rgba(240,165,0,0.15);border:1px solid var(--color-orange);padding:4px 12px;border-radius:4px;display:inline-block;margin-bottom:24px">LAS RUTAS &rarr; PORTAFOLIO</span>
+      <h1 id="hero-title">PASAPORTE<br><span>PURPLE</span></h1>
+      <p class="port-hero-sub" id="hero-sub">Proyectos que sobrevivieron a la turbulencia.</p>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO GRID -->
+  <section class="port-section">
+    <!-- Filters -->
+    <div class="port-filter">
+      <button class="port-filter-btn active" data-filter="todos">TODOS</button>
+      <button class="port-filter-btn" data-filter="branding">BRANDING</button>
+      <button class="port-filter-btn" data-filter="atl-btl">ATL &amp; BTL</button>
+      <button class="port-filter-btn" data-filter="audiovisuales">AUDIOVISUALES</button>
+      <button class="port-filter-btn" data-filter="social-media">SOCIAL MEDIA</button>
+      <button class="port-filter-btn" data-filter="editorial">EDITORIAL</button>
+      <button class="port-filter-btn" data-filter="medios">MEDIOS</button>
+    </div>
+
+    <!-- Grid -->
+    <div class="port-grid" id="port-grid">
+      <!-- 1. Zürich — Audiovisuales -->
+      <a href="casos/zurich.html" class="port-card" data-cat="audiovisuales" data-cursor="expand">
+        <div class="port-card-bg" style="background-image:url('Portafolio/Audiovisuales/Zurich/CAFE.jpg')"></div>
+        <span class="port-card-arrow">&nearr;</span>
+        <div class="port-card-content">
+          <span class="port-card-tag">AUDIOVISUALES &middot; 2024</span>
+          <div class="port-card-title">ZÜRICH</div>
+          <span class="port-card-cta">VER CASO COMPLETO &rarr;</span>
+        </div>
+      </a>
+      <!-- 2. Frunchy — Branding -->
+      <a href="portafolio.html?cat=branding" class="port-card" data-cat="branding" data-cursor="expand">
+        <div class="port-card-bg" style="background:linear-gradient(135deg,#2D1B69 0%,#7B3FE4 50%,#5A2DB8 100%)"></div>
+        <span class="port-card-arrow">&nearr;</span>
+        <div class="port-card-content">
+          <span class="port-card-tag">BRANDING &middot; 2024</span>
+          <div class="port-card-title">FRUNCHY</div>
+          <span class="port-card-cta">VER PROYECTOS &rarr;</span>
+        </div>
+      </a>
+      <!-- 3. Vick Mundial — ATL & BTL -->
+      <a href="portafolio.html?cat=atl-btl" class="port-card" data-cat="atl-btl" data-cursor="expand">
+        <div class="port-card-bg" style="background-image:url('Portafolio/ATL & BTL/Vick Mundial 2026/Mockup 1..jpg');background-color:#001A40;background-position:center top"></div>
+        <span class="port-card-arrow">&nearr;</span>
+        <div class="port-card-content">
+          <span class="port-card-tag">ATL &amp; BTL &middot; 2026</span>
+          <div class="port-card-title">VICK<br>MUNDIAL</div>
+          <span class="port-card-cta">VER PROYECTOS &rarr;</span>
+        </div>
+      </a>
+      <!-- 4. Cebión — Social Media -->
+      <div class="port-card" data-cat="social-media" style="cursor:default">
+        <div class="port-card-bg" style="background:linear-gradient(170deg,#E65100 0%,#FF8F00 40%,#F4511E 70%,#BF360C 100%)"></div>
+        <div class="port-card-content">
+          <span class="port-card-tag">SOCIAL MEDIA &middot; 2023</span>
+          <div class="port-card-title">CEBIÓN</div>
+          <span class="port-card-cta" style="opacity:1;transform:none">PRÓXIMAMENTE</span>
+        </div>
+      </div>
+      <!-- 5. BAC — Editorial -->
+      <div class="port-card" data-cat="editorial" style="cursor:default">
+        <div class="port-card-bg" style="background-image:url('Portafolio/Editorial/BAC/01. BAC.png')"></div>
+        <div class="port-card-content">
+          <span class="port-card-tag">EDITORIAL &middot; 2023</span>
+          <div class="port-card-title">BAC</div>
+          <span class="port-card-cta" style="opacity:1;transform:none">PRÓXIMAMENTE</span>
+        </div>
+      </div>
+      <!-- 6. Medios -->
+      <div class="port-card" data-cat="medios" style="cursor:default">
+        <div class="port-card-bg" style="background:linear-gradient(135deg,#006064 0%,#00BCD4 50%,#80DEEA 100%)"></div>
+        <div class="port-card-content">
+          <span class="port-card-tag">MEDIOS &middot; 2024</span>
+          <div class="port-card-title">MEDIOS</div>
+          <span class="port-card-cta" style="opacity:1;transform:none">PRÓXIMAMENTE</span>
+        </div>
+      </div>
+      <!-- No-results -->
+      <div class="port-no-results" id="port-no-results">
+        <p>✦ Próximamente más proyectos en esta categoría</p>
+      </div>
+    </div>
+
+    <!-- ═══ CATEGORY SHOWCASE ═══ -->
+    <div id="cat-showcase" class="cat-showcase">
+
+      <!-- ─── ATL & BTL ─── -->
+      <div class="showcase-project" data-show-cat="atl-btl">
+        <div class="showcase-imgs two-col">
+          <img src="Portafolio/ATL & BTL/Gillete/01. Gillete.png" alt="Gillette 01">
+          <img src="Portafolio/ATL & BTL/Gillete/02. Gillete.png" alt="Gillette 02">
+        </div>
+        <div class="showcase-info">
+          <span class="showcase-tag">ATL &amp; BTL</span>
+          <span class="showcase-dot"></span>
+          <span class="showcase-name">GILLETTE</span>
+          <span class="showcase-desc">Campaña integral de punto de venta y materiales BTL para Gillette Guatemala.</span>
+        </div>
+      </div>
+      <div class="showcase-project" data-show-cat="atl-btl">
+        <div class="showcase-imgs two-col">
+          <img src="Portafolio/ATL & BTL/Vick Mundial 2026/Mockup 1..jpg" alt="Vick Mundial mockup">
+          <img src="Portafolio/ATL & BTL/Vick Mundial 2026/Mockup 3.jpg.png" alt="Vick Mundial mockup 2">
+        </div>
+        <div class="showcase-info">
+          <span class="showcase-tag">ATL &amp; BTL</span>
+          <span class="showcase-dot"></span>
+          <span class="showcase-name">VICK MUNDIAL 2026</span>
+          <span class="showcase-desc">Activación de marca y materiales de campaña para el Mundial 2026.</span>
+        </div>
+      </div>
+
+      <!-- ─── BRANDING ─── -->
+      <div class="showcase-project" data-show-cat="branding">
+        <div class="showcase-imgs one-col showcase-placeholder" style="background:linear-gradient(135deg,#2D1B69 0%,#7B3FE4 50%,#5A2DB8 100%);display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center;pointer-events:none">
+            <div style="font-family:'EuclidFlex-Bold',sans-serif;font-size:72px;color:white;letter-spacing:4px;opacity:0.9">BRANDING</div>
+            <div style="font-family:'DK Udon Soup',sans-serif;font-size:16px;color:rgba(255,255,255,0.45);letter-spacing:0.25em;text-transform:uppercase;margin-top:16px">PRÓXIMAMENTE</div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <span class="showcase-tag">BRANDING</span>
+          <span class="showcase-dot"></span>
+          <span class="showcase-name">PRÓXIMAMENTE</span>
+        </div>
+      </div>
+
+      <!-- ─── AUDIOVISUALES ─── -->
+      <div class="showcase-project" data-show-cat="audiovisuales">
+        <div class="showcase-imgs three-col">
+          <img src="Portafolio/Audiovisuales/Zurich/CAFE.jpg" alt="Zürich café">
+          <img src="Portafolio/Audiovisuales/Zurich/BROWNIE.jpg" alt="Zürich brownie">
+          <img src="Portafolio/Audiovisuales/Zurich/CHEMEX.jpg" alt="Zürich chemex">
+        </div>
+        <div class="showcase-info">
+          <span class="showcase-tag">AUDIOVISUALES</span>
+          <span class="showcase-dot"></span>
+          <span class="showcase-name">ZÜRICH</span>
+          <span class="showcase-desc">Producción audiovisual y fotografía de producto para cafetería Zürich.</span>
+        </div>
+      </div>
+
+      <!-- ─── SOCIAL MEDIA ─── -->
+      <div class="showcase-project" data-show-cat="social-media">
+        <div class="showcase-imgs one-col showcase-placeholder" style="background:linear-gradient(170deg,#E65100 0%,#FF8F00 40%,#F4511E 70%,#BF360C 100%);display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center;pointer-events:none">
+            <div style="font-family:'EuclidFlex-Bold',sans-serif;font-size:72px;color:white;letter-spacing:4px;opacity:0.9">SOCIAL MEDIA</div>
+            <div style="font-family:'DK Udon Soup',sans-serif;font-size:16px;color:rgba(255,255,255,0.45);letter-spacing:0.25em;text-transform:uppercase;margin-top:16px">PRÓXIMAMENTE</div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <span class="showcase-tag">SOCIAL MEDIA</span>
+          <span class="showcase-dot"></span>
+          <span class="showcase-name">PRÓXIMAMENTE</span>
+        </div>
+      </div>
+
+      <!-- ─── EDITORIAL ─── -->
+      <div class="showcase-project" data-show-cat="editorial">
+        <div class="showcase-imgs three-col">
+          <img src="Portafolio/Editorial/BAC/01. BAC.png" alt="BAC editorial 01">
+          <img src="Portafolio/Editorial/BAC/02. BAC.png" alt="BAC editorial 02">
+          <img src="Portafolio/Editorial/BAC/03. BAC.png" alt="BAC editorial 03">
+        </div>
+        <div class="showcase-info">
+          <span class="showcase-tag">EDITORIAL</span>
+          <span class="showcase-dot"></span>
+          <span class="showcase-name">BAC</span>
+          <span class="showcase-desc">Diseño editorial y materiales impresos para BAC Credomatic.</span>
+        </div>
+      </div>
+
+      <!-- ─── MEDIOS ─── -->
+      <div class="showcase-project" data-show-cat="medios">
+        <div class="showcase-imgs one-col showcase-placeholder" style="background:linear-gradient(135deg,#004D40 0%,#00838F 50%,#00ACC1 100%);display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center;pointer-events:none">
+            <div style="font-family:'EuclidFlex-Bold',sans-serif;font-size:72px;color:white;letter-spacing:4px;opacity:0.9">MEDIOS</div>
+            <div style="font-family:'DK Udon Soup',sans-serif;font-size:16px;color:rgba(255,255,255,0.45);letter-spacing:0.25em;text-transform:uppercase;margin-top:16px">PRÓXIMAMENTE</div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <span class="showcase-tag">MEDIOS</span>
+          <span class="showcase-dot"></span>
+          <span class="showcase-name">PRÓXIMAMENTE</span>
+        </div>
+      </div>
+
+    </div><!-- /cat-showcase -->
+
+    <!-- CTA Strip -->
+    <div class="port-cta-strip">
+      <span class="port-cta-strip-overline">&#191;YA VOLÓ CON NOSOTROS?</span>
+      <h2>TU PROYECTO PODRÍA<br>ESTAR AQUÍ</h2>
+      <p>30 minutos. Sin compromiso. Con todas las respuestas.</p>
+      <a href="HTMLs/contacto.html" class="btn-primary" data-cursor="expand">AGENDEMOS UNA LLAMADA</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" style="position:relative;overflow:hidden">
+    <div class="footer-main" style="position:relative;z-index:2">
+      <div class="footer-brand">
+        <img src="Material de apoyo/Logo Purple horizontal.png" alt="Purple Studio" style="height:64px;width:auto;margin-bottom:16px;display:block">
+        <p class="footer-tagline">Seriamente irónicos desde Guatemala.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="footer-social" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">RUTAS</div>
+        <a href="index.html#servicios">Servicios</a>
+        <a href="portafolio.html">Portafolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#nosotros">Nosotros</a>
+        <a href="index.html#careers">Careers</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">DESTINOS</div>
+        <a href="index.html">Agencia Creativa GT</a>
+        <a href="HTMLs/branding-guatemala.html">Branding Guatemala</a>
+        <a href="HTMLs/social-media-agencia-guatemala.html">Social Media Agency</a>
+        <a href="HTMLs/produccion-audiovisual-guatemala.html">Producción Audiovisual</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">ABORDEMOS</div>
+        <a href="mailto:hola@purplestudio.gt">hola@purplestudio.gt</a>
+        <a href="tel:+50200000000">+502 0000 0000</a>
+        <a href="HTMLs/contacto.html" class="accent-link">AGENDEMOS &rarr;</a>
+      </div>
+    </div>
+    <div class="footer-marquee-bar">
+      <div class="footer-marquee-track">
+        <span class="footer-marquee-item">REL&Aacute;JATE &middot; EL PILOTO S&Iacute; LEY&Oacute; EL BRIEF</span>
+        <span class="footer-marquee-item">REL&Aacute;JATE &middot; EL PILOTO S&Iacute; LEY&Oacute; EL BRIEF</span>
+        <span class="footer-marquee-item">REL&Aacute;JATE &middot; EL PILOTO S&Iacute; LEY&Oacute; EL BRIEF</span>
+        <span class="footer-marquee-item">REL&Aacute;JATE &middot; EL PILOTO S&Iacute; LEY&Oacute; EL BRIEF</span>
+        <span class="footer-marquee-item">REL&Aacute;JATE &middot; EL PILOTO S&Iacute; LEY&Oacute; EL BRIEF</span>
+        <span class="footer-marquee-item">REL&Aacute;JATE &middot; EL PILOTO S&Iacute; LEY&Oacute; EL BRIEF</span>
+      </div>
+    </div>
+    <div class="footer-copyright">&copy; 2026 Purple Studio &middot; Guatemala &middot; Todos los derechos a bordo.</div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Volver arriba" data-cursor="expand">
+    <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+  (function() {
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    var nav = document.getElementById('navbar');
+    var scrollProgress = document.getElementById('scroll-progress');
+    var backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+      var scrollY = window.scrollY;
+      nav.classList.toggle('scrolled', scrollY > 80);
+      backToTop.classList.toggle('visible', scrollY > 400);
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress.style.width = (docHeight > 0 ? (scrollY / docHeight) * 100 : 0) + '%';
+    });
+    backToTop.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    if (window.innerWidth > 768) {
+      var cursor = document.getElementById('cursor');
+      var follower = document.getElementById('cursor-follower');
+      var mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+      document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX; mouseY = e.clientY;
+        cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px';
+      });
+      (function animateFollower() {
+        followerX += (mouseX - followerX) * 0.15;
+        followerY += (mouseY - followerY) * 0.15;
+        follower.style.left = followerX + 'px'; follower.style.top = followerY + 'px';
+        requestAnimationFrame(animateFollower);
+      })();
+      document.querySelectorAll('[data-cursor="expand"], a, button').forEach(function(el) {
+        el.addEventListener('mouseenter', function() { follower.classList.add('expand'); });
+        el.addEventListener('mouseleave', function() { follower.classList.remove('expand'); });
+      });
+    }
+    // ── FILTER LOGIC ──────────────────────────────
+    var grid       = document.getElementById('port-grid');
+    var showcase   = document.getElementById('cat-showcase');
+    var heroTitle  = document.getElementById('hero-title');
+    var heroSub    = document.getElementById('hero-sub');
+    var heroEl     = document.querySelector('.port-hero');
+    var filterBtns = document.querySelectorAll('.port-filter-btn');
+
+    var mascot = document.getElementById('hero-mascot');
+
+    var catConfig = {
+      'todos':         { title: 'PASAPORTE<br><span>PURPLE</span>', sub: 'Proyectos que sobrevivieron a la turbulencia.',  img: 'Hola soy Purp/Purp Morado.png' },
+      'branding':      { title: 'BRANDING',        sub: 'Identidad que no pide permiso.',                                  img: 'Hola soy Purp/Purp Morado.png' },
+      'atl-btl':       { title: 'ATL &amp; BTL',   sub: 'Campañas que se ven, se sienten y se recuerdan.',                img: 'Hola soy Purp/Purp Naranja.png' },
+      'audiovisuales': { title: 'AUDIOVISUALES',   sub: 'Producción que no usa stock.',                                    img: 'Hola soy Purp/Purp Verde.png' },
+      'social-media':  { title: 'SOCIAL MEDIA',    sub: 'Contenido que se merece atención.',                               img: 'Hola soy Purp/Purp Rojo.png' },
+      'editorial':     { title: 'EDITORIAL',       sub: 'Diseño editorial que no se olvida.',                              img: 'Hola soy Purp/Purp Gris.png' },
+      'medios':        { title: 'MEDIOS',          sub: 'Estrategia de medios que llega donde tiene que llegar.',          img: 'Hola soy Purp/Purp Turquesa.png' }
+    };
+
+    function applyFilter(cat) {
+      filterBtns.forEach(function(b) {
+        b.classList.toggle('active', b.getAttribute('data-filter') === cat);
+      });
+
+      var cfg = catConfig[cat] || catConfig['todos'];
+      heroTitle.innerHTML = cfg.title;
+      heroSub.textContent = cfg.sub;
+      heroEl.classList.toggle('is-filtered', cat !== 'todos');
+      // Swap mascot
+      mascot.style.opacity = '0';
+      setTimeout(function() {
+        mascot.src = cfg.img;
+        mascot.style.opacity = '1';
+      }, 200);
+
+      if (cat === 'todos') {
+        grid.style.display = '';
+        showcase.style.display = 'none';
+      } else {
+        grid.style.display = 'none';
+        showcase.style.display = 'block';
+
+        var projects = showcase.querySelectorAll('.showcase-project');
+        var visible  = [];
+        projects.forEach(function(p) {
+          var show = p.getAttribute('data-show-cat') === cat;
+          p.style.display = show ? '' : 'none';
+          if (show) visible.push(p);
+        });
+
+        if (typeof gsap !== 'undefined' && visible.length) {
+          gsap.fromTo(visible,
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.75, stagger: 0.2, ease: 'power2.out' }
+          );
+        }
+      }
+    }
+
+    // Bind filter button clicks
+    filterBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        applyFilter(btn.getAttribute('data-filter'));
+      });
+    });
+
+    // Read URL param on load: portafolio.html?cat=audiovisuales
+    var urlCat = new URLSearchParams(window.location.search).get('cat');
+    if (urlCat) {
+      applyFilter(urlCat);
+      // Scroll to grid smoothly
+      setTimeout(function() {
+        var section = document.querySelector('.port-section');
+        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+
+    // ── GSAP ANIMATIONS ──────────────────────────
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.from('.port-hero h1', { y: 60, opacity: 0, duration: 1, ease: 'power3.out', delay: 0.2 });
+      gsap.from('.port-hero-sub', { y: 30, opacity: 0, duration: 0.8, ease: 'power2.out', delay: 0.5 });
+      gsap.from('.port-card', {
+        scrollTrigger: { trigger: '#port-grid', start: 'top 80%', once: true },
+        y: 60, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out'
+      });
+    }
+  })();
+  </script>
+</body>
+</html>
